@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%
+}
+
+body {
+  background: linear-gradient(150deg, #FF6D00, #FFD180);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#name_header {
+  color: "#222222";
+  text-transform: uppercase;
+  /* something something font? */
+}
