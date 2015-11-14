@@ -14,28 +14,55 @@
   {% load staticfiles %}
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static " hue/css/bootstrap.min.css " %}" rel="stylesheet">
+  <link href="{% static "hue/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "glyphicons/css/bootstrap.min.css" %}" rel="stylesheet">
 
-  <!-- Personal files -->
-  <link href="{% static " hue/css/base.css " %}" rel="stylesheet">
+  <!-- Additional files -->
+  <link href="{% static "hue/css/base.css" %}" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Exo:900|Ubuntu:500|Lora' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
 
+  <div class="grid" id="content">
 
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4" id="name_header" align="center">
+        {% block nameheader %} {% endblock %}
+      </div>
+      <div class="col-4"></div>
+    </div>
 
-  <div class="container" id="name_header">
-    {% block nameheader %} {% endblock %}
+    <div class="row" align="center">
+      <div class="col-md-6 col-md-offset-3" id="description">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container" align="center">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div>
+              <div class="input-group stylish-input-group" id="search_bar">
+                <input type="text" class="form-control" placeholder="Enter a search term" id="search_input">
+                <span class="input-group-addon">
+                  <button type="submit">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="container">
-    {% block content %} {% endblock %}
-  </div>
-
 
 </body>
 
-<script src="{% static " hue/js/base.js " %}"></script>
+<script src="{% static "hue/js/base.js" %}"></script>
 
 </html>
