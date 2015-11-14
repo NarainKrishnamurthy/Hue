@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block morefiles %}
+<link href="{% static "hue/css/results.css" %}" rel="stylesheet">
+{% endblock %}
+
+  {% block nameheader %}
+  hue
+  {% endblock %}
+
+  {% block content %}
+    {% include "stat_panel.html" %}
+  {% endblock %}

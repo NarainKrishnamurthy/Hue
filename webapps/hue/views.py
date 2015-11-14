@@ -16,11 +16,32 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 import json
-
+import sys, os ,inspect
 from hue.models import *
+cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Twitter")))
 
+if cmd_subfolder not in sys.path:
+     sys.path.insert(0, cmd_subfolder)
+
+import twitter
 
 
 def home(request):
 	context = {}
+
+	if request.method == 'GET':
+		return render(request, 'hue/home.html', context)
+
+	search_query = request.POST['search_q']
+
+	twitter.twitter_query(search_query)
+
+	# sys call java file
+	# c file return json
+	# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
+
+def test(request):
+  context = {}
+  return render(request, 'hue/test.html', context)
+
