@@ -1,3 +1,4 @@
+import json
 from twitter import *
 
 CONSUMER_KEY = "eelzYoinnhURGfDZwyljlBsCQ"
@@ -7,7 +8,7 @@ ACCESS_TOKEN = "4183683136-fniPCNshPdfCVMGDLpD2SkuSuzwfuJrrj9SxXev"
 ACCESS_TOKEN_SECRET = "9xR7od8njdqQm5vNKVaZ3haVtXOwDVj15qhSuAnk7KBL4"
 
 def twitter_query(q):
-    tweets = []
+    tweets = {'tweets' : []}
 
     try:
         tso = TwitterSearchOrder()
@@ -16,7 +17,11 @@ def twitter_query(q):
         
         for tweet in ts.search_tweets_iterable(tso):
             if (tweet['lang'] == 'en'):
-                tweets.append(tweet)
+                tweet_obj = {'user' : tweet['user']['screen_name'],
+                             'text' : tweet['text'],
+                             'favorites' : tweet['favorite_count'],
+                             'retweets' : tweet['retweet_count']}
+                tweets['tweets'].append(tweet_obj)
 
     except TwitterSearchException as e:
         print(e)
@@ -27,5 +32,5 @@ def twitter_query(q):
 print "Input some string: "
 tweets = twitter_query(raw_input())
 
-
-
+with open('data.json', 'w') as outfile:
+    json.dump(tweets, outfile)
