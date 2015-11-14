@@ -22,6 +22,11 @@ headers = {"Authorization": auth_bear, "User-Agent": 'web:com.example.myredditap
 
 
 
-response = requests.get("https://oauth.reddit.com/api/subreddits_by_topic?query=Paris", headers=headers)
+response = requests.get("https://oauth.reddit.com/search?q=Paris&limit=2&sort=top", headers=headers)
 
-print response.json()
+data = response.json()
+# print data
+for i in xrange(0, len(data["data"]["children"])):
+    id = data["data"]["children"][i]["data"]["id"]
+    children = requests.get("https://oauth.reddit.com/comments/" + id + "/?sort=top&limit=1&depth=1", headers=headers).json()
+    print children
