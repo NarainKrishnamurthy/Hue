@@ -25,6 +25,13 @@ import com.datumbox.framework.machinelearning.classification.MultinomialNaiveBay
 import com.datumbox.framework.machinelearning.common.bases.mlmodels.BaseMLmodel;
 import com.datumbox.framework.machinelearning.featureselection.categorical.ChisquareSelect;
 import com.datumbox.framework.utilities.text.extractors.NgramsExtractor;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -51,10 +58,11 @@ public class TextClassification {
          * - datumbox.config.properties: It contains the configuration for the storage engines (required)
          * - logback.xml: It contains the configuration file for the logger (optional)
          */
-        
-    	for (String s: args) {
-            System.out.println(s);
-        }
+
+        String in_file_path = args[0];
+        String out_file_path = args[1];
+        System.out.println("in_file_path: " + in_file_path);
+        System.out.println("out_file_path: " + out_file_path);
     	
         //Initialization
         //--------------
@@ -109,15 +117,33 @@ public class TextClassification {
         classifier.setValidationMetrics(vm); //store them in the model for future reference
         
         //Classify a single sentence
-        String sentence = "Datumbox is amazing!";
-        Record r = classifier.predict(sentence);
         
+        String sentence = "I love Hilary Clinton";
+        Record r = classifier.predict(sentence);
         System.out.println("Classifing sentence: \""+sentence+"\"");
         System.out.println("Predicted class: "+r.getYPredicted());
-        System.out.println("Probability: "+r.getYPredictedProbabilities().get(r.getYPredicted()));
+        System.out.println("Probability: "+r.getYPredictedProbabilities().get(r.getYPredicted())); 
         
         System.out.println("Classifier Statistics: "+PHPfunctions.var_export(vm));
-        
+        System.out.println("evaluating input file");
+        try {
+			BufferedReader in = new BufferedReader(new FileReader(in_file_path));
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(out_file_path)));
+			
+			String line = in.readLine();
+			while(line != null){
+				Record r_line = classifier.predict(line);
+				out.println(line + "(" + r_line.getYPredicted() + ")");
+				line = in.readLine();
+			}
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.println("FINISHED");
+ 
         
         
         //Clean up
