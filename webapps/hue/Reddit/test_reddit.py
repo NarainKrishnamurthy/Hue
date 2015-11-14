@@ -28,10 +28,11 @@ class RedditParser(object):
                 id = data["data"]["children"][i]["data"]["id"]
                 children = requests.get("https://oauth.reddit.com/comments/" + id + "/.json?limit=" + str(comment_limit) + "&depth=1", headers=self.headers).json()
                 for j in xrange(0, len(children[1]["data"]["children"])-1):
-                    # print children[1]["data"]["children"][j]["data"]["body"]
+                    # print children[1]["data"]["children"][j]["data"]["ups"]
                     c_obj = {}
                     c_obj["text"] = children[1]["data"]["children"][j]["data"]["body"]
-                self.comments_obj["comments"].append(c_obj)
+                    c_obj["upvotes"]  = children[1]["data"]["children"][j]["data"]["ups"]
+                    self.comments_obj["comments"].append(c_obj)
 
         except:
             print("Error in Reddit Parser")
@@ -39,5 +40,7 @@ class RedditParser(object):
         with open(path+'/reddit_data.json', 'w') as outfile:
             json.dump(self.comments_obj, outfile)
 
+# r = RedditParser()
+# r.get_comments('paris',6,25)
 
 
