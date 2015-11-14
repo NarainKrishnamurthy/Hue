@@ -55,64 +55,6 @@ int main (int argc, char **argv) {
 	auto s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
 	std::cout << s  << std::endl;
 
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	s = ss.compute_similarity("party rock is in the house tonight, everybody gonna have a good time", "i'm sexy and i know it, shuffling, shuffling, i'm sexy and i know it", g);
-	std::cout << s  << std::endl;
-
-	
 	//morphinit();
 	//auto t2 = morphstr("boys", NOUN);
 	//auto t3 = morphword("boys", NOUN);

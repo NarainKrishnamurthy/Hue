@@ -7,7 +7,7 @@ CONSUMER_SECRET = "QfdVvKkX4ud3BpCQez6F5fmp3foRzQJrcZ03oWIwyMfdfUorP5"
 ACCESS_TOKEN = "4183683136-fniPCNshPdfCVMGDLpD2SkuSuzwfuJrrj9SxXev"
 ACCESS_TOKEN_SECRET = "9xR7od8njdqQm5vNKVaZ3haVtXOwDVj15qhSuAnk7KBL4"
 
-MAX_TWEETS = 500
+MAX_TWEETS = 25
 
 def twitter_query(q):
     tweets = {'comments' : []}
