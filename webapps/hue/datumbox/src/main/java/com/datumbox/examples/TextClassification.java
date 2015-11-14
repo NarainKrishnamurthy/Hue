@@ -15,6 +15,8 @@
  */
 package com.datumbox.examples;
 
+
+
 import com.datumbox.applications.nlp.TextClassifier;
 import com.datumbox.common.dataobjects.Record;
 import com.datumbox.common.persistentstorage.ConfigurationFactory;
@@ -25,6 +27,9 @@ import com.datumbox.framework.machinelearning.classification.MultinomialNaiveBay
 import com.datumbox.framework.machinelearning.common.bases.mlmodels.BaseMLmodel;
 import com.datumbox.framework.machinelearning.featureselection.categorical.ChisquareSelect;
 import com.datumbox.framework.utilities.text.extractors.NgramsExtractor;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,7 +41,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * Text Classification example.
@@ -118,6 +122,7 @@ public class TextClassification {
         
         //Classify a single sentence
         
+       /*
         String sentence = "I love Hilary Clinton";
         Record r = classifier.predict(sentence);
         System.out.println("Classifing sentence: \""+sentence+"\"");
@@ -125,18 +130,49 @@ public class TextClassification {
         System.out.println("Probability: "+r.getYPredictedProbabilities().get(r.getYPredicted())); 
         
         System.out.println("Classifier Statistics: "+PHPfunctions.var_export(vm));
-        System.out.println("evaluating input file");
+        System.out.println("evaluating input file"); */
         try {
-			BufferedReader in = new BufferedReader(new FileReader(in_file_path));
+			JsonReader reader = new JsonReader(new FileReader(in_file_path));
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(out_file_path)));
+			boolean first = true;
 			
+			reader.beginObject();
+			while(reader.hasNext()){
+				String key = reader.nextName();
+				if (key.equals("tweets")){
+					reader.beginArray();
+					while(reader.hasNext()){
+						reader.beginObject();
+						while(reader.hasNext()){
+							String tweet_key = reader.nextName();
+							if (tweet_key.equals("text")){
+								String line = reader.nextString();
+								System.out.println(line);
+								Record r_line = classifier.predict(line);
+								if (!first){
+									out.print(",");
+								} else {
+									first = false;
+								}
+								out.print(r_line.getYPredicted());
+							}
+						}
+						reader.endObject();
+					}
+					reader.endArray();
+				}
+			}
+			
+			/*
 			String line = in.readLine();
 			while(line != null){
 				Record r_line = classifier.predict(line);
 				out.println(line + "(" + r_line.getYPredicted() + ")");
 				line = in.readLine();
-			}
-			in.close();
+			} */
+			reader.endObject();
+			reader.close();
+			
 			out.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
