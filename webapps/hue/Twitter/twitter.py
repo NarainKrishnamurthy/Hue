@@ -7,8 +7,10 @@ CONSUMER_SECRET = "QfdVvKkX4ud3BpCQez6F5fmp3foRzQJrcZ03oWIwyMfdfUorP5"
 ACCESS_TOKEN = "4183683136-fniPCNshPdfCVMGDLpD2SkuSuzwfuJrrj9SxXev"
 ACCESS_TOKEN_SECRET = "9xR7od8njdqQm5vNKVaZ3haVtXOwDVj15qhSuAnk7KBL4"
 
+MAX_TWEETS = 500
+
 def twitter_query(q):
-    tweets = {'tweets' : []}
+    tweets = {'comments' : []}
 
     try:
         tso = TwitterSearchOrder()
@@ -22,6 +24,8 @@ def twitter_query(q):
                              'favorites' : tweet['favorite_count'],
                              'retweets' : tweet['retweet_count']}
                 tweets['tweets'].append(tweet_obj)
+                if (len(tweets['tweets']) >= MAX_TWEETS):
+                    break;
 
     except TwitterSearchException as e:
         print(e)
