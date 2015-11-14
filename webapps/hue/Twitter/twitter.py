@@ -1,5 +1,5 @@
-import json
-from twitter import *
+import json,os
+from twit import *
 
 CONSUMER_KEY = "eelzYoinnhURGfDZwyljlBsCQ"
 CONSUMER_SECRET = "QfdVvKkX4ud3BpCQez6F5fmp3foRzQJrcZ03oWIwyMfdfUorP5"
@@ -11,7 +11,7 @@ MAX_TWEETS = 500
 
 def twitter_query(q):
     tweets = {'comments' : []}
-
+    path = os.path.dirname(os.path.realpath(__file__))
     try:
         tso = TwitterSearchOrder()
         tso.set_keywords(q.split(" "))
@@ -23,15 +23,16 @@ def twitter_query(q):
                              'text' : tweet['text'],
                              'favorites' : tweet['favorite_count'],
                              'retweets' : tweet['retweet_count']}
-                tweets['tweets'].append(tweet_obj)
-                if (len(tweets['tweets']) >= MAX_TWEETS):
+                tweets['comments'].append(tweet_obj)
+                if (len(tweets['comments']) >= MAX_TWEETS):
                     break;   
-                    
-        with open('data.json', 'w') as outfile:
-            json.dump(tweets, outfile)
 
     except TwitterSearchException as e:
         print(e)
+
+
+    with open(path+'/data.json', 'w') as outfile:
+        json.dump(tweets, outfile)
 
 
 
