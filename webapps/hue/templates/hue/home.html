@@ -5,8 +5,9 @@
   hue
   {% endblock %}
 
-  {% block content %}
-  A quick way to check crowd sentiment on products, people, and event, and a fast and (mostly) accurate way to crowdsource opinions across various social media platforms, such as Twitter, Facebook, and Reddit.
+  {% block description %}
+  A quick way to check crowd sentiment on products, people, and event, and a fast and (mostly) accurate way to crowdsource opinions across various social media platforms, such as Twitter, Facebook, and Reddit.<br>
+  Link to the test page is <a href="{% url 'test' %}">here</a>.
   {% endblock %}
 
   {% block searchbar %}
@@ -17,14 +18,12 @@
             <div>
             	<form method="post" action="{% url 'home' %}">
 	              <div class="input-group stylish-input-group" id="search_bar">
-	              	
 		                <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input">
 		                <span class="input-group-addon">
-		                  <button type="submit"></button>
-		             	 {% csrf_token %}
+		                  <button type="submit">
 		                  <span class="glyphicon glyphicon-search"></span>
+		                  </button>
 		                </span>
-	                
               	 </div>
 	            {% csrf_token %}
 	            </form>
