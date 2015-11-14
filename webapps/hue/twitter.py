@@ -32,5 +32,5 @@ def twitter_query(q):
 print "Input some string: "
 tweets = twitter_query(raw_input())
 
-with open('data.txt', 'w') as outfile:
+with open('data.json', 'w') as outfile:
     json.dump(tweets, outfile)
