@@ -28,6 +28,7 @@ def home(request):
 	#twitter_query(search_query)
 	if request.method == 'GET':
 		return render(request, 'hue/home.html', context)
+		
 	print request.POST
 
 	#twitter_query(search_query)

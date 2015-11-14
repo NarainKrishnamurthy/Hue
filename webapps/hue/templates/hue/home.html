@@ -15,17 +15,19 @@
         <div class="row" align="center">
           <div class="col-sm-6 col-sm-offset-3">
             <div>
-              <div class="input-group stylish-input-group" id="search_bar">
-              	<form method="post" action="{% url 'home' %}">
-	                <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input">
-	                <span class="input-group-addon">
-	                  <button type="submit">
-	              {% csrf_token %}
-                </form>
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </span>
-              </div>
+            	<form method="post" action="{% url 'home' %}">
+	              <div class="input-group stylish-input-group" id="search_bar">
+	              	
+		                <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input">
+		                <span class="input-group-addon">
+		                  <button type="submit"></button>
+		             	 {% csrf_token %}
+		                  <span class="glyphicon glyphicon-search"></span>
+		                </span>
+	                
+              	 </div>
+	            {% csrf_token %}
+	            </form>
             </div>
           </div>
         </div>
