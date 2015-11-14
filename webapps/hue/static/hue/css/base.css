@@ -1,0 +1,83 @@
+html {
+  min-height: 100%;
+  background: linear-gradient(150deg, #F4511E, #6200EA);
+}
+
+body {
+  min-width: 100%;
+  background: transparent;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plainlink {
+  color: #FFFFFF;
+}
+
+.plainlink:hover,
+.plainlink:active,
+.plainlink:visited {
+  text-decoration: none;
+  color: #EEEEEE;
+}
+
+.nav_bar_elem {
+  color: #FFFFFF;
+  font-size: 32px;
+}
+
+.stylish-input-group .form-control {
+  height: 36px;
+  border-right: 0;
+  box-shadow: 0 0 0;
+  border-color: #CCCCCC;
+  font-family: "Muli", sans-serif;
+}
+
+.stylish-input-group button {
+  color: #222222;
+  border: 0;
+  background: transparent;
+}
+
+#nav_bar {
+  background: #424242;
+}
+
+#nav_bar_name {
+  text-align: left;
+  text-transform: uppercase;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+
+#nav_bar_about {
+  text-align: right;
+  font-family: 'Mrs Sheppards', cursive;
+}
+
+#name {
+  margin-top: 15%
+}
+
+#name_header {
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+#descrip_container {
+  text-align: center;
+  color: #FFFFFF;
+  font-family: "Muli", sans-serif;
+}
+
+#search_container {
+  padding-top: 16px;
+}

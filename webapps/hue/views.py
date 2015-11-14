@@ -37,7 +37,11 @@ def home(request):
 	# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
 
-def test(request):
+def about(request):
   context = {}
-  return render(request, 'hue/test.html', context)
+  return render(request, 'hue/about.html', context)
 
+def result(request):
+  context = {}
+  context['search_query'] = request.POST['search_q']
+  return render(request, 'hue/result.html', context)
