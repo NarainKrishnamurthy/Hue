@@ -17,5 +17,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 import json
 
-from grumblr.models import *
-from grumblr.forms import *
+from hue.models import *
+
+
+
+def home(request):
+	context = {}
+	return render(request, 'hue/home.html', context)

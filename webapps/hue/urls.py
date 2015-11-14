@@ -4,7 +4,8 @@ from django.contrib import admin
 urlpatterns = [
     #sample urls for app
 
-    #url(r'^$', 'grumblr.views.profile', name='profile'),
-    
-    #url(r'^gs$', 'grumblr.views.gs', name='gs'),
+	url(r'^$', 'hue.views.home', name='home'),
+	url(r'^home$', 'hue.views.home', name='home'),
+
+
 ]
