@@ -1,4 +1,5 @@
-#Backend
+# Hue
+## Backend
 - Extract text corpus on topic. Solution: Reddit, FB, and Twitter APIs
 - Classify comments into positive and negative using sentiment analysis. Solution: (http://www.datumbox.com/)
 - Compute the popularity of each comment by weighting likes, upvotes, etc.
