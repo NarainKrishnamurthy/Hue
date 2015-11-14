@@ -80,10 +80,15 @@ public class TextClassification {
         //Reading Data
         //------------
         Map<Object, URI> dataset = new HashMap<>(); //The examples of each category are stored on the same file, one example per row.
-        System.out.println(TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
-        InputStream pos_is = TextClassification.class.getClassLoader().getResourceAsStream("/datasets/sentiment-analysis/rt-polarity.pos");
+      
+        //For the JAR
         dataset.put("positive", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
         dataset.put("negative", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.neg").toURI());
+        
+        //For testing
+        //dataset.put("positive", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.pos").toURI());
+        //dataset.put("negative", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.neg").toURI());
+       
         
         
         //Setup Training Parameters
@@ -124,15 +129,6 @@ public class TextClassification {
         
         //Classify a single sentence
         
-       /*
-        String sentence = "I love Hilary Clinton";
-        Record r = classifier.predict(sentence);
-        System.out.println("Classifing sentence: \""+sentence+"\"");
-        System.out.println("Predicted class: "+r.getYPredicted());
-        System.out.println("Probability: "+r.getYPredictedProbabilities().get(r.getYPredicted())); 
-        
-        System.out.println("Classifier Statistics: "+PHPfunctions.var_export(vm));
-        System.out.println("evaluating input file"); */
         try {
 			JsonReader reader = new JsonReader(new FileReader(in_file_path));
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(out_file_path)));
