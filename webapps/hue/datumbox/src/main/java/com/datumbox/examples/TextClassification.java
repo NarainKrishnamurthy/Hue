@@ -157,6 +157,8 @@ public class TextClassification {
 									first = false;
 								}
 								out.print(r_line.getYPredicted());
+							} else {
+								reader.skipValue();
 							}
 						}
 						reader.endObject();
