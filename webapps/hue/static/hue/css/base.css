@@ -12,6 +12,7 @@ body {
 
 
 /* This is probably a terribad name */
+
 #content {
   padding-top: 15%;
   padding-bottom: 15%;
@@ -23,7 +24,6 @@ body {
   font-size: 56px;
   font-weight: 900;
   font-family: "Exo", sans-serif;
-  /* something something font? */
 }
 
 #description {
@@ -32,13 +32,18 @@ body {
   /* also some edit for font */
 }
 
-#sb_container {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
 #search_bar {
-  width: 95%;
+  width: 200%;
   height: 36px;
   border: solid 1px #00B0FF
+  align-content: center;
+}
+
+#search_input {
+  padding: 5px 15px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-family: "Ubuntu", sans-serif;
 }

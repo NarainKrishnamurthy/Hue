@@ -15,10 +15,11 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{% static "hue/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "glyphicons/css/bootstrap.min.css" %}" rel="stylesheet">
 
   <!-- Additional files -->
   <link href="{% static "hue/css/base.css" %}" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Exo:900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Exo:900|Ubuntu:500' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -42,13 +43,19 @@
       <div class="col-3"></div>
     </div>
 
-    <div class="row">
-      <div class="col-12" align="center" id="sb_container">   
-        
+    <div class="row" id="search_bar">
+      <div class="col-11">
         <form method="get" action="LASKJFLKAJSFLKJASF">
-          <input type="text" id="search_bar">
+          <input type="text" id="search_input">
         </form> 
       </div>
+      
+      <div class="col-1" id="search_button">
+        <button type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </div>
+      
     </div>
     
   </div>
