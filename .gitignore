@@ -1,6 +1,6 @@
 # Class-specific section #
 
-.DS_Store
+*.DS_Store
 
 # Java section #
 *.class
