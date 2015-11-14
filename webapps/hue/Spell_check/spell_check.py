@@ -30,7 +30,7 @@ def correct(word):
     return max(candidates, key=NWORDS.get)
 
 
-#print correct('splling')
+#print correct('Obama')
 #print correct('korrecter')
 
 
