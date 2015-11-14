@@ -23,8 +23,8 @@ def twitter_query(q):
                              'text' : tweet['text'],
                              'favorites' : tweet['favorite_count'],
                              'retweets' : tweet['retweet_count']}
-                tweets['tweets'].append(tweet_obj)
-                if (len(tweets['tweets']) >= MAX_TWEETS):
+                tweets['comments'].append(tweet_obj)
+                if (len(tweets['comments']) >= MAX_TWEETS):
                     break;
 
     except TwitterSearchException as e:
