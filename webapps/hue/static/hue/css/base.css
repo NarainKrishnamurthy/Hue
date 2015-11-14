@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+}
+
+body{ 
+  background: linear-gradient(150deg, #FF6D00, #FFD180);
+  margin: 0;
+  top: 50%;
+  left: 50%;
+}
+
+.header {
+}
+
+#name_header {
+  text-transform: "uppercase";
+  /* something something font? */
+}
