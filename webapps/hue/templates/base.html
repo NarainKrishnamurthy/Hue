@@ -20,6 +20,8 @@
   <!-- Additional files -->
   <link href="{% static "hue/css/base.css" %}" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Exo:900|Ubuntu:500|Lora' rel='stylesheet' type='text/css'>
+  
+  {% block morefiles %} {% endblock %}
 
 </head>
   
@@ -33,15 +35,18 @@
       </div>
     </div>
 
+    {% block content %}{% endblock %}
+    
     <div class="row" align="center">
       <div class="col-md-6 col-md-offset-3" id="description">
-        {% block content %} {% endblock %}
+        {% block description %} {% endblock %}
       </div>
       <div class="col-md-3"></div>
     </div>
 
-
     {% block searchbar %}{% endblock %}
+    
+    
     
     <div class="footer">
       created by Sharangdhar Chakraborty, Narain Krishnamurthy, Sohil Shah, &amp; William Yu for HackPrinceton, Fall 2015
@@ -49,10 +54,12 @@
     
   </div>
 
+  <script src="{% static "hue/js/jquery-2.1.4.min.js" %}"></script>
+  <script src="{% static "hue/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "bower_components/chartist/dist/chartist.min.js" %}"></script>
+  
 </body>
 
-<script src="{% static "hue/js/jquery-2.1.4.min.js" %}"></script>
-<script src="{% static "hue/js/bootstrap.min.js" %}"></script>
 
 </html>
 

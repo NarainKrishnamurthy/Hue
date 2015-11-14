@@ -1,0 +1,21 @@
+{
+  "name": "static",
+  "homepage": "https://github.com/NarainKrishnamurthy/Hue",
+  "authors": [
+    "William Yu <williamy@andrew.cmu.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chartist": "~0.9.4"
+  }
+}

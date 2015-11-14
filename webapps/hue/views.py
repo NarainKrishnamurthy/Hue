@@ -37,5 +37,7 @@ def home(request):
 	# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
 
-
+def test(request):
+  context = {}
+  return render(request, 'hue/test.html', context)
 
