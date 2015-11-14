@@ -1,10 +1,11 @@
-#Backend
-- Extract text corpus on topic. Solution: Reddit, FB, and Twiter APIs
+# Hue
+## Backend
+- Extract text corpus on topic. Solution: Reddit, FB, and Twitter APIs
 - Classify comments into positive and negative using sentiment analysis. Solution: (http://www.datumbox.com/)
 - Compute the popularity of each comment by weighting likes, upvotes, etc.
 
 For each comment:
-- Correct words: http://norvig.com/spell-correct.html
+- ~~Correct words:~~ http://norvig.com/spell-correct.html
 - Expand all acronyms to their full words. Inject some synonyms for the key nouns in the sentence (taking care NOT to inject synonyms for the, at, for). Solution: Wordnet (https://wordnet.princeton.edu/)
 - /* Optional */ Count the comment geographies 
 
