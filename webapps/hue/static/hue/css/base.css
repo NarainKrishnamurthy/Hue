@@ -1,13 +1,32 @@
-html,
-body {
-  min-height: 100%
+html {
+  min-height: 100%;
+  background: linear-gradient(150deg, #F4511E, #6200EA);
 }
 
 body {
-  background: linear-gradient(150deg, #FF6D00, #6200EA);
-  margin: 0;
-  display: flex;
-  justify-content: center;
+  min-width: 100%;
+  background: transparent;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plainlink {
+  color: #FFFFFF;
+}
+
+.plainlink:hover,
+.plainlink:active,
+.plainlink:visited {
+  text-decoration: none;
+  color: #EEEEEE;
+}
+
+.nav_bar_elem {
+  color: #FFFFFF;
+  font-size: 32px;
 }
 
 .stylish-input-group .form-control {
@@ -15,8 +34,7 @@ body {
   border-right: 0;
   box-shadow: 0 0 0;
   border-color: #CCCCCC;
-  font-weight: 500;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Muli", sans-serif;
 }
 
 .stylish-input-group button {
@@ -25,31 +43,41 @@ body {
   background: transparent;
 }
 
-.footer {
+#nav_bar {
   background: #424242;
-  color: #FFFFFF;
-  position: fixed;
-  padding: 0 4 4 0;
-  bottom: 0px;
-  right: 0px;
 }
 
-#content {
-  padding-top: 15%;
-  padding-bottom: 20%;
+#nav_bar_name {
+  text-align: left;
+  text-transform: uppercase;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+
+#nav_bar_about {
+  text-align: right;
+  font-family: 'Mrs Sheppards', cursive;
+}
+
+#name {
+  margin-top: 15%
 }
 
 #name_header {
-  color: "#222222";
+  text-align: center;
   text-transform: uppercase;
-  font-size: 56px;
+  color: #FFFFFF;
+  font-family: "Exo 2", sans-serif;
   font-weight: 900;
-  font-family: "Exo", sans-serif;
+  font-size: 48px;
 }
 
-#description {
-  color: "#000000";
-  width: 500px;
-  margin-bottom: 16px;
-  font-family: "Lora", serif;
+#descrip_container {
+  text-align: center;
+  color: #FFFFFF;
+  font-family: "Muli", sans-serif;
+}
+
+#search_container {
+  padding-top: 16px;
 }

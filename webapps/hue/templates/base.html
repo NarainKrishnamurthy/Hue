@@ -9,59 +9,34 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-
   <title> hue </title>
   {% load staticfiles %}
 
   <!-- Bootstrap core CSS -->
   <link href="{% static "hue/css/bootstrap.min.css" %}" rel="stylesheet">
-  <link href="{% static "glyphicons/css/bootstrap.min.css" %}" rel="stylesheet">
 
-  <!-- Additional files -->
+  <!-- Base CSS and Fonts -->
   <link href="{% static "hue/css/base.css" %}" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Exo:900|Ubuntu:500|Lora' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Mrs+Sheppards|Muli|Exo+2:900' rel='stylesheet' type='text/css'>
   
-  {% block morefiles %} {% endblock %}
-
+  {% block morestyles %} {% endblock %}
 </head>
   
 <body>
-
-  <div class="grid" id="content" align="center">
-
-    <div class="row" align="center">
-      <div class="col-md-6 col-md-offset-3" id="name_header" align="center">
-        {% block nameheader %} {% endblock %}
+  
+  <div class="container container-full">
+    <div class="row" id="nav_bar">
+      <div class="col-md-6 nav_bar_elem" id="nav_bar_name">
+        <a href="{% url 'home' %}" class="plainlink">hue</a>
+      </div>
+      <div class="col-md-6 nav_bar_elem" id="nav_bar_about">
+        <a href="{% url 'about' %}" class="plainlink">about</a>
       </div>
     </div>
-
-    {% block content %}{% endblock %}
     
-    <div class="row" align="center">
-      <div class="col-md-6 col-md-offset-3" id="description">
-        {% block description %} {% endblock %}
-      </div>
-      <div class="col-md-3"></div>
-    </div>
-
-    {% block searchbar %}{% endblock %}
-    
-    
-    
-    <div class="footer">
-      created by Sharangdhar Chakraborty, Narain Krishnamurthy, Sohil Shah, &amp; William Yu for HackPrinceton, Fall 2015
-    </div>
-    
+    {% block content %} {% endblock %}
   </div>
-
-  <script src="{% static "hue/js/jquery-2.1.4.min.js" %}"></script>
-  <script src="{% static "hue/js/bootstrap.min.js" %}"></script>
-  <script src="{% static "bower_components/chartist/dist/chartist.min.js" %}"></script>
   
 </body>
-
-
-</html>
-
-
-
+  
+{% block morescripts %}{% endblock %}
