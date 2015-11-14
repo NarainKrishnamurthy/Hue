@@ -40,27 +40,11 @@
       <div class="col-md-3"></div>
     </div>
 
-    <div class="row">
-      <div class="container">
-        <div class="row" align="center">
-          <div class="col-sm-6 col-sm-offset-3">
-            <div>
-              <div class="input-group stylish-input-group" id="search_bar">
-                <input type="text" class="form-control" placeholder="Enter a search term" id="search_input" action="search()">
-                <span class="input-group-addon">
-                  <button type="submit" onclick="search();">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    {% block searchbar %}{% endblock %}
     
     <div class="footer">
-      {% block credits %} {% endblock %}
+      created by Sharangdhar Chakraborty, Narain Krishnamurthy, Sohil Shah, &amp; William Yu for HackPrinceton, Fall 2015
     </div>
     
   </div>
@@ -69,7 +53,6 @@
 
 </html>
 
-<script src="{% static "hue/js/base.js" %}"></script>
 <script src="{% static "hue/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "hue/js/bootstrap.min.js" %}"></script>
 

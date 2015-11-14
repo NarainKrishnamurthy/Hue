@@ -9,6 +9,27 @@
   A quick way to check crowd sentiment on products, people, and event, and a fast and (mostly) accurate way to crowdsource opinions across various social media platforms, such as Twitter, Facebook, and Reddit.
   {% endblock %}
 
-  {% block credits %}
-  created by Sharangdhar Chakraborty, Narain Krishnamurthy, Sohil Shah, &amp; William Yu for HackPrinceton, Fall 2015
-  {% endblock %}
+  {% block searchbar %}
+    <div class="row">
+      <div class="container">
+        <div class="row" align="center">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div>
+              <div class="input-group stylish-input-group" id="search_bar">
+              	<form method="post" action="{% url 'home' %}">
+	                <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input">
+	                <span class="input-group-addon">
+	                  <button type="submit">
+	              {% csrf_token %}
+                </form>
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+

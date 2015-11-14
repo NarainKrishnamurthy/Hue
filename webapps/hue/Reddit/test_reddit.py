@@ -19,9 +19,8 @@ headers = {"Authorization": auth_bear, "User-Agent": 'web:com.example.myredditap
 
 
 #response = requests.get("https://oauth.reddit.com/api/v1/me", headers=headers)
+#response = requests.get("https://oauth.reddit.com/api/subreddits_by_topic?query=Paris", headers=headers)
 
-
-
-response = requests.get("https://oauth.reddit.com/api/subreddits_by_topic?query=Paris", headers=headers)
+response = requests.get("https://oauth.reddit.com/r/subreddits/search?q=Paris&count=1&limit=1&sort=comment", headers=headers)
 
 print response.json()

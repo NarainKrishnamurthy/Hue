@@ -16,6 +16,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 import json
+import sys, os 
+#import Twitter.twitter 
 
 from hue.models import *
 
@@ -23,4 +25,16 @@ from hue.models import *
 
 def home(request):
 	context = {}
+	#twitter_query(search_query)
+	if request.method == 'GET':
+		return render(request, 'hue/home.html', context)
+	print request.POST
+
+	#twitter_query(search_query)
+	# sys call java file
+	# c file return json
+	# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
+
+
+
