@@ -25,16 +25,14 @@ def twitter_query(q):
                              'retweets' : tweet['retweet_count']}
                 tweets['tweets'].append(tweet_obj)
                 if (len(tweets['tweets']) >= MAX_TWEETS):
-                    break;
+                    break;   
+                    
+        with open('data.json', 'w') as outfile:
+            json.dump(tweets, outfile)
 
     except TwitterSearchException as e:
         print(e)
 
-    return tweets
 
 
-print "Input some string: "
-tweets = twitter_query(raw_input())
-
-with open('data.json', 'w') as outfile:
-    json.dump(tweets, outfile)
+  
