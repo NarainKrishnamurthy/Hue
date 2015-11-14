@@ -36,6 +36,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -79,9 +80,10 @@ public class TextClassification {
         //Reading Data
         //------------
         Map<Object, URI> dataset = new HashMap<>(); //The examples of each category are stored on the same file, one example per row.
-        dataset.put("positive", TextClassification.class.getClassLoader().getResource("datasets/sentiment-analysis/rt-polarity.pos").toURI());
-        dataset.put("negative", TextClassification.class.getClassLoader().getResource("datasets/sentiment-analysis/rt-polarity.neg").toURI());
-        
+        System.out.println(TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
+        InputStream pos_is = TextClassification.class.getClassLoader().getResourceAsStream("/datasets/sentiment-analysis/rt-polarity.pos");
+        dataset.put("positive", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
+        dataset.put("negative", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.neg").toURI());
         
         
         //Setup Training Parameters
