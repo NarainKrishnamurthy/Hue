@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
 
-  <title> Hue Hue Hue </title>
+  <title> hue </title>
   {% load staticfiles %}
 
   <!-- Bootstrap core CSS -->
@@ -22,33 +22,33 @@
   <link href='https://fonts.googleapis.com/css?family=Exo:900|Ubuntu:500|Lora' rel='stylesheet' type='text/css'>
 
 </head>
-
+  
 <body>
 
-  <div class="grid" id="content">
+  <div class="grid" id="content" align="center">
 
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4" id="name_header" align="center">
+    <div class="row" align="center">
+      <div class="col-md-6 col-md-offset-3" id="name_header" align="center">
         {% block nameheader %} {% endblock %}
       </div>
-      <div class="col-4"></div>
     </div>
 
     <div class="row" align="center">
       <div class="col-md-6 col-md-offset-3" id="description">
         {% block content %} {% endblock %}
       </div>
+      <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-      <div class="container" align="center">
-        <div class="row">
+      <div class="container">
+        <div class="row" align="center">
           <div class="col-sm-6 col-sm-offset-3">
             <div>
               <div class="input-group stylish-input-group" id="search_bar">
-                <input type="text" class="form-control" placeholder="Enter a search term" id="search_input">
+                <input type="text" class="form-control" placeholder="Enter a search term" id="search_input" action="search()">
                 <span class="input-group-addon">
-                  <button type="submit">
+                  <button type="submit" onclick="search();">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
                 </span>
@@ -58,11 +58,18 @@
         </div>
       </div>
     </div>
-
+    
+    <div class="footer">
+      {% block credits %} {% endblock %}
+    </div>
+    
   </div>
 
 </body>
 
-<script src="{% static "hue/js/base.js" %}"></script>
-
 </html>
+
+<script src="{% static "hue/js/base.js" %}"></script>
+<script src="{% static "hue/js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "hue/js/bootstrap.min.js" %}"></script>
+
