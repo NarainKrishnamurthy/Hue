@@ -14,28 +14,47 @@
   {% load staticfiles %}
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static " hue/css/bootstrap.min.css " %}" rel="stylesheet">
+  <link href="{% static "hue/css/bootstrap.min.css" %}" rel="stylesheet">
 
-  <!-- Personal files -->
-  <link href="{% static " hue/css/base.css " %}" rel="stylesheet">
+  <!-- Additional files -->
+  <link href="{% static "hue/css/base.css" %}" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Exo:900' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
 
+  <div class="grid" id="content">      
+    
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4" id="name_header" align="center">
+        {% block nameheader %} {% endblock %}
+      </div>
+      <div class="col-4"></div>
+    </div>
 
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6" id="description" align="center">
+        {% block content %} {% endblock %}
+      </div>
+      <div class="col-3"></div>
+    </div>
 
-  <div class="container" id="name_header">
-    {% block nameheader %} {% endblock %}
+    <div class="row">
+      <div class="col-12" align="center" id="sb_container">   
+        
+        <form method="get" action="LASKJFLKAJSFLKJASF">
+          <input type="text" id="search_bar">
+        </form> 
+      </div>
+    </div>
+    
   </div>
-
-  <div class="container">
-    {% block content %} {% endblock %}
-  </div>
-
 
 </body>
 
-<script src="{% static " hue/js/base.js " %}"></script>
+<script src="{% static "hue/js/base.js" %}"></script>
 
 </html>
