@@ -10,18 +10,21 @@ body {
   justify-content: center;
 }
 
-.stylish-input-group .form-control{
+.stylish-input-group .form-control {
   height: 36px;
-	border-right:0; 
-	box-shadow:0 0 0; 
-	border-color: #CCCCCC;
+  border-right: 0;
+  box-shadow: 0 0 0;
+  border-color: #CCCCCC;
+  font-weight: 500;
+  font-family: "Ubuntu", sans-serif;
 }
 
-.stylish-input-group button{
+.stylish-input-group button {
   color: #222222;
-  border:0;
+  border: 0;
   background: transparent;
 }
+
 
 /* This is probably a terribad name */
 
@@ -44,7 +47,4 @@ body {
   margin-bottom: 16px;
   font-family: "Lora", serif;
   /* also some edit for font */
-}
-
-#search_input {
 }
