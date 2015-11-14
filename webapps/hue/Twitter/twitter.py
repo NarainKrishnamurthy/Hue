@@ -38,4 +38,3 @@ def twitter_query(q):
         json.dump(tweets, outfile)
 
 
-twitter_query('manutd')
