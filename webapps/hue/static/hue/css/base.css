@@ -25,6 +25,11 @@ body {
   background: transparent;
 }
 
+.footer {
+  position: fixed;
+  bottom: 8px;
+  right: 16px;
+}
 
 /* This is probably a terribad name */
 
