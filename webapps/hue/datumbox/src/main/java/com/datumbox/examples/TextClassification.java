@@ -141,7 +141,7 @@ public class TextClassification {
 			reader.beginObject();
 			while(reader.hasNext()){
 				String key = reader.nextName();
-				if (key.equals("tweets")){
+				if (key.equals("comments")){
 					reader.beginArray();
 					while(reader.hasNext()){
 						reader.beginObject();
