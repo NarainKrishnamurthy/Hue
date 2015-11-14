@@ -4,18 +4,30 @@ body {
 }
 
 body {
-  background: linear-gradient(150deg, #FF6D00, #FFD180);
+  background: linear-gradient(150deg, #FF6D00, #6200EA);
   margin: 0;
   display: flex;
   justify-content: center;
 }
 
+.stylish-input-group .form-control{
+  height: 36px;
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color: #CCCCCC;
+}
+
+.stylish-input-group button{
+  color: #222222;
+  border:0;
+  background: transparent;
+}
 
 /* This is probably a terribad name */
 
 #content {
-  padding-top: 15%;
-  padding-bottom: 15%;
+  padding-top: 18%;
+  padding-bottom: 20%;
 }
 
 #name_header {
@@ -29,21 +41,10 @@ body {
 #description {
   color: "#000000";
   width: 500px;
+  margin-bottom: 16px;
+  font-family: "Lora", serif;
   /* also some edit for font */
 }
 
-#search_bar {
-  width: 200%;
-  height: 36px;
-  border: solid 1px #00B0FF
-  align-content: center;
-}
-
 #search_input {
-  padding: 5px 15px;
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  font-family: "Ubuntu", sans-serif;
 }
