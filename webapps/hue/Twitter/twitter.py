@@ -12,12 +12,15 @@ MAX_TWEETS = 25
 def twitter_query(q):
     tweets = {'comments' : []}
     path = os.path.dirname(os.path.realpath(__file__))
+    count = 0
     try:
         tso = TwitterSearchOrder()
         tso.set_keywords(q.split(" "))
         ts = TwitterSearch(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, verify=True)
         
         for tweet in ts.search_tweets_iterable(tso):
+            if tweet['coordinates'] != None:
+                count = count + 1 
             if (tweet['lang'] == 'en'):
                 tweet_obj = {'user' : tweet['user']['screen_name'],
                              'text' : tweet['text'],
@@ -30,10 +33,9 @@ def twitter_query(q):
     except TwitterSearchException as e:
         print(e)
 
-
+    print count
     with open(path+'/data.json', 'w') as outfile:
         json.dump(tweets, outfile)
 
 
-
-  
+twitter_query('manutd')
