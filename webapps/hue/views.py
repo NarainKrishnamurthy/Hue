@@ -36,7 +36,7 @@ from RedditParser import RedditParser
 
 
 def twitter_posts(query):
-  twitter.twitter_query(query)
+  twitter.twitter_query(query, 250)
 
   path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
   ifile  = cmd_subfolder_t + '/data.json'
@@ -56,7 +56,7 @@ def twitter_posts(query):
 
 def reddit_posts(query):
   r = RedditParser()
-  r.reddit_query(query, 25, 25)
+  r.reddit_query(query, 10, 25)
   path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
   ifile  = cmd_subfolder_r + '/data.json'
   ofile  = path + '/sentiment.csv'
