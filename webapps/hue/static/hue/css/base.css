@@ -88,12 +88,15 @@ body {
 
 #stats_container {
   margin-top: 36px;
-  color: white;
+
 }
 
+#chart1 {
+  background: white;
+}
 #chart2 {
   margin-top: -36px;
-  color: white;
+  background: white;
 }
 
 #textbox1 {
