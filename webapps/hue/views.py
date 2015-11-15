@@ -47,10 +47,11 @@ def home(request):
 		os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
 		path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
 		cofile = path + '/senti.json'
-		os.system("./similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
+		os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
 		with open(cofile) as data_file:
 			data = json.load(data_file)
 		context['data'] = data
+                print context
 
 	return render(request, 'hue/home.html', context)
 
