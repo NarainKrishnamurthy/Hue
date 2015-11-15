@@ -7,9 +7,9 @@ CONSUMER_SECRET = "QfdVvKkX4ud3BpCQez6F5fmp3foRzQJrcZ03oWIwyMfdfUorP5"
 ACCESS_TOKEN = "4183683136-fniPCNshPdfCVMGDLpD2SkuSuzwfuJrrj9SxXev"
 ACCESS_TOKEN_SECRET = "9xR7od8njdqQm5vNKVaZ3haVtXOwDVj15qhSuAnk7KBL4"
 
-MAX_TWEETS = 125
+MAX_TWEETS = 500
 
-def twitter_query(q):
+def twitter_query(q, num_tweets):
     tweets = {'comments' : []}
     path = os.path.dirname(os.path.realpath(__file__))
     count = 0
@@ -27,7 +27,7 @@ def twitter_query(q):
                              'favorites' : tweet['favorite_count'],
                              'retweets' : tweet['retweet_count']}
                 tweets['comments'].append(tweet_obj)
-                if (len(tweets['comments']) >= MAX_TWEETS):
+                if (len(tweets['comments']) >= min(MAX_TWEETS, num_tweets)):
                     break;   
 
     except TwitterSearchException as e:
