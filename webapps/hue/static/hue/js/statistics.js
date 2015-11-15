@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 new Chartist.Bar('#chart1', {
   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
   series: [
