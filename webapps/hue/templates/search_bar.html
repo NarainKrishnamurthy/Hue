@@ -3,11 +3,12 @@
     <div>
       <form method="post" action="{% url 'home' %}">
         <div class="input-group stylish-input-group" id="search_bar">
-          <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input" maxlength="140" value={{search_query}}>
+          <input type="text" class="form-control" placeholder="Enter a search term" type='submit' name='search_q' id="search_input" maxlength="140" value="{{search_query}}">
           <span class="input-group-addon">
-		        <button type="submit"></button>
+		        <button type="submit">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
 		        {% csrf_token %}
-		        <span class="glyphicon glyphicon-search"></span>
           </span>
         </div>
         {% csrf_token %}
