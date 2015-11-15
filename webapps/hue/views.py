@@ -45,10 +45,13 @@ def home(request):
 		ifile  = cmd_subfolder + '/data.json'
 		ofile  = path + '/sentiment.csv'
 		os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
+		path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
+		cofile = path + '/senti.json'
+		os.system("./similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
+		with open(cofile) as data_file:
+			data = json.load(data_file)
+		context['data'] = data
 
-
-		# c file return json
-		# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
 
 @transaction.atomic
