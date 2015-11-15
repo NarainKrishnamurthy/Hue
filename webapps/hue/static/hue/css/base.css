@@ -66,6 +66,10 @@ body {
 /*  margin: 0 auto;*/
 }
 
+.info_header {
+  font-family: "Muli", sans-serif;
+}
+
 #nav_bar {
   background: #424242;
 }
@@ -158,7 +162,4 @@ body {
   color: #FFFFFF;
   font-size: 14px;
   font-family: "Muli", sans-serif;
-}
-
-#positive-chart {
 }
