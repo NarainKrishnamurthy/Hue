@@ -59,8 +59,12 @@ body {
   font-family: 'Mrs Sheppards', cursive;
 }
 
+#about_name {
+  margin-top: 8%;
+}
+
 #name {
-  margin-top: 15%
+  margin-top: 15%;
 }
 
 #name_header {
