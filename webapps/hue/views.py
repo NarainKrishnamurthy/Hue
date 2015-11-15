@@ -26,8 +26,13 @@ cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(ins
 if cmd_subfolder not in sys.path:
      sys.path.insert(0, cmd_subfolder)
 
+cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Reddit")))
+if cmd_subfolder not in sys.path:
+     sys.path.insert(0, cmd_subfolder)
+
 import twitter
 import sentiment
+from RedditParser import RedditParser
 
 
 @transaction.atomic
@@ -45,19 +50,25 @@ def home(request):
         print(search_query)
         context['query'] = True
 
-        twitter.twitter_query(search_query)
+        # twitter.twitter_query(search_query)
+        r = RedditParser()
+        r.reddit_query(search_query, 25, 25)
+
         path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
-        file_p = path + '/TextClassification.jar'
         ifile  = cmd_subfolder + '/data.json'
         ofile  = path + '/sentiment.csv'
-        sentiment.analyze_sentiment(ifile, ofile, 0.0)
+
+        print ifile
+        print ofile
+
+        sentiment.analyze_sentiment(ifile, ofile, 0.1)
 
         path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
-        cofile = path + '/senti.json'
+        cofile = path + '/reddit_senti.json'
         os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
         with open(cofile) as data_file:
             data = json.load(data_file)
-        context['data'] = data
+        context['data'] = json.dumps(data)
 
 	return render(request, 'hue/home.html', context)
 

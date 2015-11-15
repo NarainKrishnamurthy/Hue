@@ -19,7 +19,7 @@ using namespace std;
 #include "wordnet_extended.h"
 
 typedef WordnetExtended we;
-#define NUM_COMMENTS 20
+#define NUM_COMMENTS 10
 
 struct comment {
   string text;
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
     if (sentiment[i] == "positive") Lp.push_back(c);
     else if (sentiment[i] == "negative") Ln.push_back(c);
   }
-  
+  /*  
   int total_pos = 0;
   for (int i=0; i<Lp.size();i++){
     total_pos += Lp[i].score;
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
 
   cout << "Size of Lp: " << Lp.size() << endl;
   cout << "Size of Ln: " << Ln.size() << endl;
-
+  */
   std::sort(Lp.begin(), Lp.end(), [](const struct comment &a, const struct comment &b) -> bool {
       return a.score > b.score;
     });
@@ -135,9 +135,10 @@ int main(int argc, char **argv) {
     });
 
   int compares = 0;
-  
-  for (int i = 0; i < Lp.size() - 1; i++) {
-    for (int j = i + 1; j < Lp.size(); j++) {      
+ 
+  int k = Lp.size() < NUM_COMMENTS ? Lp.size() : NUM_COMMENTS;
+  for (int i = 0; i < k - 1; i++) {
+    for (int j = i + 1; j < k; j++) {      
       if (Lp[j].score < 0) continue;
       compares++;
       float s = ss.compute_similarity(Lp[i].text, Lp[j].text, g);
@@ -147,9 +148,10 @@ int main(int argc, char **argv) {
       }   
     }
   }
-  
-  for (int i = 0; i < Ln.size() - 1; i++) {
-    for (int j = i + 1; j < Ln.size(); j++) {
+
+  k = Ln.size() < NUM_COMMENTS ? Ln.size() : NUM_COMMENTS;  
+  for (int i = 0; i < k - 1; i++) {
+    for (int j = i + 1; j < k; j++) {
       if (Ln[j].score < 0) continue;
       compares++;
       float s = ss.compute_similarity(Ln[i].text, Ln[j].text, g);
@@ -219,6 +221,5 @@ int main(int argc, char **argv) {
   ofstream out(OUTPUT_FILE);
   
   out << s.GetString() << endl;
-  cout << compares << endl;
   return 0;  
 }

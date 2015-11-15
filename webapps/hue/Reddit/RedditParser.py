@@ -23,17 +23,21 @@ class RedditParser(object):
 
         response = requests.get("https://oauth.reddit.com/search?q=" + query  +"&limit=" + str(article_limit) + "&sort=top", headers=self.headers)
         data = response.json()
-        # print data
-        for i in xrange(0, len(data["data"]["children"])):
-            id = data["data"]["children"][i]["data"]["id"]
-            children = requests.get("https://oauth.reddit.com/comments/" + id + "/.json?limit=" + str(comment_limit) + "&depth=1", headers=self.headers).json()
-            for j in xrange(0, len(children[1]["data"]["children"])-1):
-                # print children[1]["data"]["children"][j]["data"]["body"]
-                c_obj = {}
-                c_obj["text"] = children[1]["data"]["children"][j]["data"]["body"][0:self.max_comment_size]
-                self.comments_obj["comments"].append(c_obj)
+        
+        if "data" in data.keys() and "children" in data["data"].keys():
+            for i in xrange(0, len(data["data"]["children"])):
+                id = data["data"]["children"][i]["data"]["id"]
+                children = requests.get("https://oauth.reddit.com/comments/" + id + "/.json?limit=" + str(comment_limit) + "&depth=1", headers=self.headers).json()
+                for j in xrange(0, len(children[1]["data"]["children"])-1):
+                    # print children[1]["data"]["children"][j]["data"]["body"]
+                    c_obj = {}
+                    c_obj["text"] = children[1]["data"]["children"][j]["data"]["body"][0:self.max_comment_size]
+                    c_obj["favorites"] = int(children[1]["data"]["children"][j]["data"]["ups"])
+                    c_obj["retweets"] = 0
+                    self.comments_obj["comments"].append(c_obj)
 
-        with open(path+'/data.json', 'w') as outfile:
-            json.dump(self.comments_obj, outfile)
+            with open(path+'/data.json', 'w') as outfile:
+                json.dump(self.comments_obj, outfile)
+
 
 

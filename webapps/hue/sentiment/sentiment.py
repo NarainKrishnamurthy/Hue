@@ -11,6 +11,7 @@ def analyze_sentiment(json_input_path, csv_path, threshold):
         writer = csv.writer(csvfile, delimiter=',')
 
         sentiment_list = []
+
         for comment in data["comments"]:
             sentiment = TextBlob(comment["text"]).sentiment.polarity
             if sentiment >= threshold:
@@ -20,5 +21,7 @@ def analyze_sentiment(json_input_path, csv_path, threshold):
             else:
                 sentiment_list.append('neutral')
 
+        print "num comments:", len(data["comments"])
+        print "num sentiments: ", len(sentiment_list)
         writer.writerow(sentiment_list)
     
