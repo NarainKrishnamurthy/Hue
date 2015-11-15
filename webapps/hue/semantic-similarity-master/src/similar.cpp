@@ -4,10 +4,8 @@
 #include <vector>
 #include <sstream>
 
-#define INPUT_COMMENTS_FILE "comments.json"
-#define INPUT_SENTIMENT_FILE "comments.csv"
-#define OUTPUT_FILE "TopSentiments.json"
 #define THRESHOLD 0.5
+#define MAX_BUFFER (1 << 18)
 
 #include "rapidjson/document.h"
 #include "rapidjson/prettywriter.h"
@@ -50,28 +48,31 @@ int max(vector<struct comment> list) {
 }
 
 
-int main() {
+int main(int argc, char **argv) {
 
+  if (argc < 4) return 1;
+
+  const char *INPUT_COMMENTS_FILE = argv[1];
+  const char *INPUT_SENTIMENT_FILE = argv[2];
+  const char *OUTPUT_FILE = argv[3];
+  
   FILE *file = fopen(INPUT_COMMENTS_FILE, "r");
 
-  char *json;
-  size_t length;
-  getline(&json, &length, file);
-  fclose(file);
+  ifstream in(INPUT_COMMENTS_FILE);
+  string json;
+  getline(in, json);
 
   ifstream infile(INPUT_SENTIMENT_FILE);
   string sent_csv;
   getline(infile, sent_csv);
   vector<string> sentiment;
   split(sent_csv, ',', sentiment);
-
+  
   Document comments;
   
-  comments.Parse(json);
+  comments.Parse(json.c_str());
   
   printf("\nParsing to document succeeded.\n");
-
-  // Value& v = document["comments"][0]["text"];
 
   vector<struct comment> Lp, Ln;
 
@@ -122,17 +123,42 @@ int main() {
     Ln.erase(Ln.begin() + m);
   }
 
-
-  for (int i = 0; i < 5; i++) {
-    cout << "Text: " << max_pos[i].text << " \nScore: " << max_pos[i].score << endl << endl;
-  }
   
-  cout << endl << endl;
+  StringBuffer s;
+  Writer<StringBuffer> writer(s);
 
-  for (int i = 0; i < 5; i++) {
-    cout << "Text: " << max_neg[i].text << " \nScore: " << max_neg[i].score << endl << endl;    
-  }
+
+  writer.StartObject();
   
+  writer.String("comm_pos");
+  writer.StartArray();
+  for (int i = 0; i < 5; i++) {
+    writer.StartObject();
+    writer.String("text");
+    writer.String(max_pos[i].text.c_str());
+    writer.String("score");
+    writer.Int(max_pos[i].score);
+    writer.EndObject();
+  }
+  writer.EndArray();
 
+  writer.String("comm_neg");
+  writer.StartArray();
+  for (int i = 0; i < 5; i++) {
+    writer.StartObject();
+    writer.String("text");
+    writer.String(max_neg[i].text.c_str());
+    writer.String("score");
+    writer.Int(max_neg[i].score);
+    writer.EndObject();
+  }
+  writer.EndArray();
+  writer.EndObject();
+			    
+  
+  ofstream out(OUTPUT_FILE);
+  
+  out << s.GetString() << endl;
+  
   return 0;  
 }
