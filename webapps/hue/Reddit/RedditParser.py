@@ -1,6 +1,7 @@
 import requests
 import requests.auth
 import json
+import os
 
 class RedditParser(object):
     client_id = 'EfEAJfojHDJAKg';
@@ -13,10 +14,12 @@ class RedditParser(object):
     acc_tok = resp['access_token']
     auth_bear =  "bearer " + (str(acc_tok))
     headers = {"Authorization": auth_bear, "User-Agent": 'web:com.example.myredditapp:v1.0.0 (by /u/sharangc)'}
+    max_comment_size = 140 #max comment size in charcters
 
-    def send_request(self, query, article_limit, comment_limit):
+    def reddit_query(self, query, article_limit, comment_limit):
         self.comments_obj = {}
         self.comments_obj["comments"] = []
+        path = os.path.dirname(os.path.realpath(__file__))
 
         response = requests.get("https://oauth.reddit.com/search?q=" + query  +"&limit=" + str(article_limit) + "&sort=top", headers=self.headers)
         data = response.json()
@@ -27,9 +30,10 @@ class RedditParser(object):
             for j in xrange(0, len(children[1]["data"]["children"])-1):
                 # print children[1]["data"]["children"][j]["data"]["body"]
                 c_obj = {}
-                c_obj["text"] = children[1]["data"]["children"][j]["data"]["body"]
+                c_obj["text"] = children[1]["data"]["children"][j]["data"]["body"][0:self.max_comment_size]
                 self.comments_obj["comments"].append(c_obj)
 
-        return self.comments_obj
+        with open(path+'/data.json', 'w') as outfile:
+            json.dump(self.comments_obj, outfile)
 
 
