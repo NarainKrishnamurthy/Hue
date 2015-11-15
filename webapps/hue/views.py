@@ -57,7 +57,7 @@ def home(request):
         os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
         with open(cofile) as data_file:
             data = json.load(data_file)
-        context['data'] = data
+        context['data'] = json.dumps(data)
 
 	return render(request, 'hue/home.html', context)
 

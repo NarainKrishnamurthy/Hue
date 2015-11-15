@@ -58,7 +58,7 @@ body {
 
 .ct-series-a .ct-bar {
   stroke: #AEEA00 !important;
-  stroke-width: 20px !important;
+  stroke-width: 25px !important;
 }
 
 .pos-neg {
@@ -112,16 +112,18 @@ body {
 #stats_container {
   margin-top: 36px;
   color: white;
-  background: rgba(122, 122, 122, 0.4);
+  background: rgba(122, 122, 122, 0.5);
   border: 3px solid #424242;
 }
 
 #textbox1 {
   margin-top: 20px;
+  font-family: "Muli", sans-serif;
 }
 
 #textbox2 {
   margin-top: 20px;
+  font-family: "Muli", sans-serif;
 }
 
 #stat_header {
@@ -129,6 +131,7 @@ body {
   background: #424242;
   text-align: center;
   font-size: 24px;
+  font-family: "Muli", sans-serif;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -155,4 +158,7 @@ body {
   color: #FFFFFF;
   font-size: 14px;
   font-family: "Muli", sans-serif;
+}
+
+#positive-chart {
 }
