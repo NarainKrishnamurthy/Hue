@@ -82,6 +82,18 @@ body {
   padding-top: 16px;
 }
 
-.chartist-bar {
-  
+.positive-chart {
+  background: white;
+  text: white;
 }
+
+.negative-chart {
+  background: white;
+  text: white;
+}
+
+.ct-series-a .ct-bar {
+  /* The width of your bars */
+  stroke-width: 20px;
+}
+
