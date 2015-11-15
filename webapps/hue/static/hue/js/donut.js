@@ -1,7 +1,3 @@
-var data = {
-  series: [60, 40]
-};
-
 var options = {
   height: 200,
   donut: true,

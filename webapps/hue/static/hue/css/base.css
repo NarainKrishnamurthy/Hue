@@ -43,6 +43,9 @@ body {
   background: transparent;
 }
 
+.fill-col {
+}
+
 .ct-series-a .ct-slice-donut {
   stroke: #76FF03 !important;
   stroke-width: 25px !important;
@@ -51,6 +54,16 @@ body {
 .ct-series-b .ct-slice-donut {
   stroke: #212121 !important;
   stroke-width: 25px !important;
+}
+
+.ct-series-a .ct-bar {
+  stroke: #AEEA00 !important;
+  stroke-width: 25px !important;
+}
+
+.pos-neg {
+  font-size: 14px;
+/*  margin: 0 auto;*/
 }
 
 #nav_bar {
@@ -103,20 +116,12 @@ body {
   border: 3px solid #424242;
 }
 
-#chart1 {
-  background: white;
-}
-#chart2 {
-  margin-top: -36px;
-  background: white;
-}
-
 #textbox1 {
   margin-top: 20px;
 }
 
 #textbox2 {
-  margin-top: -20px;
+  margin-top: 20px;
 }
 
 #stat_header {
