@@ -76,6 +76,10 @@
 
     var percentPos = Math.floor((pscore / (pscore + nscore))*100);
     
+    var p_total = pscore_arr.reduce(function (x, y) {return x+y;});
+    var n_total = nscore_arr.reduce(function (x,y) {return x+y;});
+
+    percentPos = Math.floor((p_total + n_total == 0) ? 0 : (p_total/(p_total + n_total)) * 100);
     document.getElementById("senti_stat").innerHTML = percentPos + "%";
     
     var data = {
