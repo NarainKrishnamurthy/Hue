@@ -1,14 +1,25 @@
- //var data = {{data | safe}};
-new Chartist.Bar('.ct-chart', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+new Chartist.Bar('#chart1', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
   series: [
-    [5, 4, 3, 7, 5, 10, 3]
+    [5, 4, 3, 7, 3]
   ]
 }, {
-  seriesBarDistance: 10,
   reverseData: true,
   horizontalBars: true,
   axisY: {
-    offset: 70
+    offset: 50
+  }
+});
+
+new Chartist.Bar('#chart2', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  series: [
+    [5, 4, 3, 7, 3]
+  ]
+}, {
+  reverseData: true,
+  horizontalBars: true,
+  axisY: {
+    offset: 50
   }
 });
