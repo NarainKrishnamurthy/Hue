@@ -137,13 +137,13 @@ IndexPtr parse_index(long offset, int dbase, char *line) {
     /* get the word */
     ptrtok=strtok(line," \n");
     
-    idx->wd = malloc(strlen(ptrtok) + 1);
+    idx->wd = (char*)malloc(strlen(ptrtok) + 1);
     assert(idx->wd);
     strcpy(idx->wd, ptrtok);
     
     /* get the part of speech */
     ptrtok=strtok(NULL," \n");
-    idx->pos = malloc(strlen(ptrtok) + 1);
+    idx->pos = (char*)malloc(strlen(ptrtok) + 1);
     assert(idx->pos);
     strcpy(idx->pos, ptrtok);
     
@@ -175,7 +175,7 @@ IndexPtr parse_index(long offset, int dbase, char *line) {
     idx->tagged_cnt = atoi(ptrtok);
         
     /* make space for the offsets */
-    idx->offset = (long *) malloc(idx->off_cnt * (sizeof(long)));
+    idx->offset = (unsigned long *) malloc(idx->off_cnt * (sizeof(long)));
     assert(idx->offset);
     
     /* get the offsets */
@@ -335,7 +335,7 @@ SynsetPtr parse_synset(FILE *fp, int dbase, char *word)
     
     /* looking at POS */
     ptrtok = strtok(NULL, " \n");
-    synptr->pos = malloc(strlen(ptrtok) + 1);
+    synptr->pos = (char*)malloc(strlen(ptrtok) + 1);
     assert(synptr->pos);
     strcpy(synptr->pos, ptrtok);
     if (getsstype(synptr->pos) == SATELLITE)
@@ -354,7 +354,7 @@ SynsetPtr parse_synset(FILE *fp, int dbase, char *word)
     
     for (i = 0; i < synptr->wcount; i++) {
 	ptrtok = strtok(NULL, " \n");
-	synptr->words[i] = malloc(strlen(ptrtok) + 1);
+	synptr->words[i] = (char*)malloc(strlen(ptrtok) + 1);
 	assert(synptr->words[i]);
 	strcpy(synptr->words[i], ptrtok);
 	
@@ -463,7 +463,7 @@ SynsetPtr parse_synset(FILE *fp, int dbase, char *word)
 		strcat(tbuf," ");
 	}
 	assert((1 + strlen(tbuf)) < sizeof(tbuf));
-	synptr->defn = malloc(strlen(tbuf) + 4);
+	synptr->defn = (char*)malloc(strlen(tbuf) + 4);
 	assert(synptr->defn);
 	sprintf(synptr->defn,"(%s)",tbuf);
     }
@@ -1690,7 +1690,7 @@ SynsetPtr traceptrs_ds(SynsetPtr synptr, int ptrtyp, int dbase, int depth)
 		cursyn = read_synset(synptr->ppos[i],
 				      synptr->ptroff[i],
 				      "");
-		synptr->headword = malloc(strlen(cursyn->words[0]) + 1);
+		synptr->headword = (char*)malloc(strlen(cursyn->words[0]) + 1);
 		assert(synptr->headword);
 		strcpy(synptr->headword, cursyn->words[0]);
 		synptr->headsense = cursyn->lexid[0];

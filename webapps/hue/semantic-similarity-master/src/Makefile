@@ -5,7 +5,7 @@ SRC := ../lib/wn/
 SOURCES := $(wildcard ../lib/wn/*.c)
 OBJS := $(patsubst ../lib/wn/%,build/%,$(SOURCES:.c=.o))
 CC = g++
-CFLAGS = -fpermissive -O2 -std=c++11 -I../include/ -I../include/wn/ -I../../similarity
+CFLAGS = -O2 -std=c++11 -I../include/ -I../include/wn/ -I../../similarity
 
 
 ###################################################################

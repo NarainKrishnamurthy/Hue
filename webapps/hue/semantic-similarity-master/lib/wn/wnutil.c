@@ -601,7 +601,7 @@ char *WNSnsToStr(IndexPtr idx, int sense)
 	for (j = 0; j < sptr->ptrcount; j++) {
 	    if (sptr->ptrtyp[j] == SIMPTR) {
 		adjss = read_synset(sptr->ppos[j],sptr->ptroff[j],"");
-		sptr->headword = malloc (strlen(adjss->words[0]) + 1);
+		sptr->headword = (char*)malloc (strlen(adjss->words[0]) + 1);
 		assert(sptr->headword);
 		strcpy(sptr->headword, adjss->words[0]);
 		strtolower(sptr->headword);
@@ -686,7 +686,7 @@ SnsIndexPtr GetSenseIndex(char *sensekey)
 	       loc,
 	       &snsidx->wnsense,
 	       &snsidx->tag_cnt);
-	snsidx->sensekey = malloc(strlen(buf + 1));
+	snsidx->sensekey = (char*)malloc(strlen(buf + 1));
 	assert(snsidx->sensekey);
 	strcpy(snsidx->sensekey, buf);
 	snsidx->loc = atol(loc);
