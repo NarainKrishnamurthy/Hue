@@ -51,7 +51,6 @@ def home(request):
 		with open(cofile) as data_file:
 			data = json.load(data_file)
 		context['data'] = data
-                print context
 
 	return render(request, 'hue/home.html', context)
 
