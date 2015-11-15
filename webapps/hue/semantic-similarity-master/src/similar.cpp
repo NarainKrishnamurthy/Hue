@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 
   vector<struct comment> Lp, Ln;
 
-  we we("/home/sohils/work/WordNet-3.0/dict", "../semantic-similarity-master/dicts/freq.txt");
+  we we("WordNet-3.0/dict", "../semantic-similarity-master/dicts/freq.txt");
   we::UndirectedGraph g;
   SentenceSimilarityLi2006 ss(we);  
   
