@@ -19,7 +19,7 @@ using namespace std;
 #include "wordnet_extended.h"
 
 typedef WordnetExtended we;
-#define NUM_COMMENTS 25
+#define NUM_COMMENTS 20
 
 struct comment {
   string text;
@@ -27,12 +27,12 @@ struct comment {
 };
 
 vector<string> &split(const string &s, char delim, vector<string> &elems) {
-    stringstream ss(s);
-    string item;
-    while (getline(ss, item, delim)) {
-        elems.push_back(item);
-    }
-    return elems;
+  stringstream ss(s);
+  string item;
+  while (getline(ss, item, delim)) {
+    elems.push_back(item);
+  }
+  return elems;
 }
 
 int max(vector<struct comment> list) {
@@ -88,48 +88,44 @@ int main(int argc, char **argv) {
   
   int total_pos = 0;
   for (int i=0; i<Lp.size();i++){
-   total_pos += Lp[i].score;
+    total_pos += Lp[i].score;
   }
 
   int total_neg = 0;
   for (int i=0; i<Ln.size();i++){
-   total_neg += Ln[i].score;
+    total_neg += Ln[i].score;
   }
    
-  int i,count = 0;
+  int i=0,count = 0;
   long size_Lp = Lp.size();
   srand (time(NULL));
   while ((count < NUM_COMMENTS) && (i  < size_Lp)){
-   int rand_int = (rand() % total_pos);
-     std::cout << count << std::endl; 
-     std::cout << i << std::endl; 
+    int rand_int = (rand() % total_pos);
 
-   if ((rand_int > Lp[i].score) && ((NUM_COMMENTS - count) < (size_Lp - i))){
-      Lp.push_back(Lp[i]);
-   } else {
+    if ((rand_int > Lp[i].score) && ((NUM_COMMENTS - count) < (size_Lp - i))){
+      Lp.erase(Lp.begin() + i);
+    } else {
       count++;
-   }
-   i++;
+    }
+    i++;
   } 
-  std::cout << "finished processing positives" << std::endl;
 
-
-  i,count = 0;
+  i=0,count = 0;
   long size_Ln = Ln.size();
   srand (time(NULL));
   while ((count < NUM_COMMENTS) && (i  < size_Ln)){
-   int rand_int = (rand() % total_neg);
-     std::cout << count << std::endl; 
-     std::cout << i << std::endl; 
+    int rand_int = (rand() % total_neg);
 
-   if ((rand_int > Ln[i].score) && ((NUM_COMMENTS - count) < (size_Ln - i))){
-      Ln.push_back(Ln[i]);
-   } else {
+    if ((rand_int > Ln[i].score) && ((NUM_COMMENTS - count) < (size_Ln - i))){
+      Ln.erase(Ln.begin() + i);
+    } else {
       count++;
-   }
-   i++;
-  } 
-  std::cout << "finished processing negatives"<< std::endl;
+    }
+    i++;
+  }
+
+  cout << "Size of Lp: " << Lp.size() << endl;
+  cout << "Size of Ln: " << Ln.size() << endl;
 
   std::sort(Lp.begin(), Lp.end(), [](const struct comment &a, const struct comment &b) -> bool {
       return a.score > b.score;
@@ -138,9 +134,12 @@ int main(int argc, char **argv) {
       return a.score > b.score;
     });
 
+  int compares = 0;
+  
   for (int i = 0; i < Lp.size() - 1; i++) {
-    for (int j = i + 1; j < Lp.size(); j++) {
+    for (int j = i + 1; j < Lp.size(); j++) {      
       if (Lp[j].score < 0) continue;
+      compares++;
       float s = ss.compute_similarity(Lp[i].text, Lp[j].text, g);
       if (s >= THRESHOLD) {
 	Lp[i].score += Lp[j].score;
@@ -152,6 +151,7 @@ int main(int argc, char **argv) {
   for (int i = 0; i < Ln.size() - 1; i++) {
     for (int j = i + 1; j < Ln.size(); j++) {
       if (Ln[j].score < 0) continue;
+      compares++;
       float s = ss.compute_similarity(Ln[i].text, Ln[j].text, g);
       if (s >= THRESHOLD) {
 	Ln[i].score += Ln[j].score;
@@ -219,6 +219,6 @@ int main(int argc, char **argv) {
   ofstream out(OUTPUT_FILE);
   
   out << s.GetString() << endl;
-
+  cout << compares << endl;
   return 0;  
 }
