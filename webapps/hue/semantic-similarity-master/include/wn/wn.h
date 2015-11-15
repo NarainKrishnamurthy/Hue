@@ -15,7 +15,7 @@
 
 #define DICTDIR         "/dict"
 #ifndef DEFAULTPATH
-#define DEFAULTPATH	"/home/sohils/work/WordNet-3.0/dict"
+#define DEFAULTPATH	"src/WordNet-3.0/dict"
 #endif
 #define DATAFILE	"%s/data.%s"
 #define INDEXFILE	"%s/index.%s"
