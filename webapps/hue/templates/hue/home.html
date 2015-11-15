@@ -17,10 +17,51 @@
     {% include "stats_fragment.html" %}
   {% endif %}
 
+
+ 
   {% endblock %}
 
 {% block morescripts %}
   <script src="{% static "hue/js/chartist.min.js" %}"></script>
   <script src="{% static "hue/js/statistics.js" %}"></script>
   <script src="{% static "hue/js/donut.js" %}"></script>
+    <script type="text/javascript">
+
+    var d = {{data|safe}};
+    console.log(d);
+
+    var data_pos = d['comm_pos'];
+    var data_neg = d['comm_neg'];
+
+
+    var pmax = data_pos[0]['score'];
+    var nmax = data_neg[0]['score'];
+
+    var pscore_arr = [];
+    var nscore_arr = [];
+
+
+    for(var i=0; i<data_pos.length; i++){
+      if (data_pos[i]['score'] > pmax){
+        pmax = data_pos[i]['score'];
+      }
+      if (data_neg[i]['score'] > nmax){
+        nmax = data_neg[i]['score'];
+      }
+
+      pscore_arr[i] = data_pos[i]['score'];
+      nscore_arr[i] = data_neg[i]['score'];
+    }
+    for (var j=0;j < data_pos.length; j++){
+      pscore_arr[j] = 10*(pscore_arr[j] /pmax);
+      nscore_arr[j] = 10*(nscore_arr[j] /nmax);
+    }
+    pscore_arr.filter(function (x) {return x >= 0;});
+    nscore_arr.filter(function (x) {return x>=0;});
+
+    pos_wrap(pscore_arr);
+    neg_wrap(nscore_arr);
+
+  </script>
 {% endblock %}
+

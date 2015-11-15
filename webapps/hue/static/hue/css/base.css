@@ -103,9 +103,12 @@ body {
   border: 3px solid #424242;
 }
 
+#chart1 {
+  background: white;
+}
 #chart2 {
   margin-top: -36px;
-  color: white;
+  background: white;
 }
 
 #textbox1 {

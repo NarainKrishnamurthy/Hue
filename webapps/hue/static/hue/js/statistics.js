@@ -1,25 +1,31 @@
-new Chartist.Bar('#chart1', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-  series: [
-    [5, 4, 3, 7, 3]
-  ]
-}, {
-  reverseData: true,
-  horizontalBars: true,
-  axisY: {
-    offset: 50
-  }
-});
+function pos_wrap(data1){
+  new Chartist.Bar('#positive-chart', {
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    series: [
+      data1
+    ]
+  }, {
+    seriesBarDistance: 10,
+    reverseData: true,
+    horizontalBars: true,
+    axisY: {
+      offset: 70
+    }
+  });
+}
 
-new Chartist.Bar('#chart2', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-  series: [
-    [5, 4, 3, 7, 3]
-  ]
-}, {
-  reverseData: true,
-  horizontalBars: true,
-  axisY: {
-    offset: 50
-  }
-});
+function neg_wrap(data1){
+  new Chartist.Bar('#negative-chart', {
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    series: [
+      data1
+    ]
+  }, {
+    seriesBarDistance: 10,
+    reverseData: true,
+    horizontalBars: true,
+    axisY: {
+      offset: 70
+    }
+  });
+}
