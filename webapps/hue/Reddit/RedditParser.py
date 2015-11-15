@@ -32,7 +32,4 @@ class RedditParser(object):
 
         return self.comments_obj
 
-r = RedditParser();
-print r.send_request('paris',1,6)
-
 

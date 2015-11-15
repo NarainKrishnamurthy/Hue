@@ -1,0 +1,18 @@
+import json
+import csv
+
+def get_top_opinions(comments_file, sentiment_file):
+   with open(comments_file) as data_file:
+      comments = json.load(data_file)["comments"]
+   
+   sentiment = csv.reader(sentiment_file, delimiter=',');
+   LP = []
+   LN = []
+   for i in xrange(0, len(sentiment):
+      if sentiment[i] == "positive":
+         LP.append(comments[i])
+      elif sentiment[i] == "negative":
+         LN.append(comments[i])
+
+
+

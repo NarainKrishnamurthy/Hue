@@ -31,13 +31,20 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -56,7 +63,9 @@ public class TextClassification {
      * @param args the command line arguments
      * @throws java.net.URISyntaxException
      */
-    public static void main(String[] args) throws URISyntaxException {        
+    public static void main(String[] args) throws URISyntaxException {     
+    	
+    	
         /**
          * There are two configuration files in the resources folder:
          * 
@@ -82,12 +91,12 @@ public class TextClassification {
         Map<Object, URI> dataset = new HashMap<>(); //The examples of each category are stored on the same file, one example per row.
       
         //For the JAR
-        dataset.put("positive", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
-        dataset.put("negative", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.neg").toURI());
+        //dataset.put("positive", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.pos").toURI());
+        //dataset.put("negative", TextClassification.class.getResource("/src/main/resources/datasets/sentiment-analysis/rt-polarity.neg").toURI());
         
         //For testing
-        //dataset.put("positive", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.pos").toURI());
-        //dataset.put("negative", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.neg").toURI());
+        dataset.put("positive", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.pos").toURI());
+        dataset.put("negative", TextClassification.class.getResource("/datasets/sentiment-analysis/rt-polarity.neg").toURI());
        
         
         
@@ -117,9 +126,7 @@ public class TextClassification {
         //------------------
         TextClassifier classifier = new TextClassifier("SentimentAnalysis", dbConf);
         classifier.fit(dataset, trainingParameters);
-        
-        
-        
+        System.out.println("\n classifier is serializable: " + (classifier instanceof Serializable) + "\n");
         //Use the classifier
         //------------------
         
@@ -127,8 +134,7 @@ public class TextClassification {
         BaseMLmodel.ValidationMetrics vm = classifier.validate(dataset);
         classifier.setValidationMetrics(vm); //store them in the model for future reference
         
-        //Classify a single sentence
-        
+   /*
         try {
 			JsonReader reader = new JsonReader(new FileReader(in_file_path));
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(out_file_path)));
@@ -163,13 +169,6 @@ public class TextClassification {
 				}
 			}
 			
-			/*
-			String line = in.readLine();
-			while(line != null){
-				Record r_line = classifier.predict(line);
-				out.println(line + "(" + r_line.getYPredicted() + ")");
-				line = in.readLine();
-			} */
 			reader.endObject();
 			reader.close();
 			
@@ -178,9 +177,9 @@ public class TextClassification {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
         System.out.println("FINISHED");
- 
-        
+
         
         //Clean up
         //--------
