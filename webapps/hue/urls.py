@@ -7,5 +7,4 @@ urlpatterns = [
 	url(r'^$', 'hue.views.home', name='home'),
 	url(r'^home$', 'hue.views.home', name='home'),
   url(r'^about$', 'hue.views.about', name='about'),
-  url(r'^result$', 'hue.views.result', name='result'),  
 ]
