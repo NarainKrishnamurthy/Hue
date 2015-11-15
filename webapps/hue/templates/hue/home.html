@@ -22,7 +22,13 @@
 {% block morescripts %}
   <script src="{% static "hue/js/chartist.min.js" %}"></script>
   <script src="{% static "hue/js/statistics.js" %}"></script>
+  <script>
+    var d = {{data_tw|safe}};
+    console.log(d);
+    
+    var rd = {{data_re|safe}};
+    console.log(rd);
+  </script>
   <script src="{% static "hue/js/redundant.js" %}"></script>
   <script src="{% static "hue/js/donut.js" %}"></script>
 {% endblock %}
-
