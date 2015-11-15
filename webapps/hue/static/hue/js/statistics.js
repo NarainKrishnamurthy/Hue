@@ -5,12 +5,12 @@ function pos_wrap(data1){
       data1
     ]
   }, {
-    height:200,
+    height:300,
     seriesBarDistance: 20,
     reverseData: true,
     horizontalBars: true,
     axisY: {
-      offset: 50
+      offset: 50,
     }
   });
 }
@@ -22,7 +22,7 @@ function neg_wrap(data1){
       data1
     ]
   }, {
-    height:200,
+    height:300,
     seriesBarDistance: 10,
     reverseData: true,
     horizontalBars: true,
