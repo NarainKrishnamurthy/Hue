@@ -43,6 +43,29 @@ body {
   background: transparent;
 }
 
+.fill-col {
+}
+
+.ct-series-a .ct-slice-donut {
+  stroke: #76FF03 !important;
+  stroke-width: 25px !important;
+}
+
+.ct-series-b .ct-slice-donut {
+  stroke: #212121 !important;
+  stroke-width: 25px !important;
+}
+
+.ct-series-a .ct-bar {
+  stroke: #AEEA00 !important;
+  stroke-width: 20px !important;
+}
+
+.pos-neg {
+  font-size: 14px;
+/*  margin: 0 auto;*/
+}
+
 #nav_bar {
   background: #424242;
 }
@@ -89,10 +112,8 @@ body {
 #stats_container {
   margin-top: 36px;
   color: white;
-}
-
-#chart2 {
-  margin-top: -36px;
+  background: rgba(122, 122, 122, 0.4);
+  border: 3px solid #424242;
 }
 
 #textbox1 {
@@ -100,5 +121,38 @@ body {
 }
 
 #textbox2 {
-  margin-top: -20px;
+  margin-top: 20px;
+}
+
+#stat_header {
+  color: white;
+  background: #424242;
+  text-align: center;
+  font-size: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#sentiment_container {
+  height: 200px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+#sentiment {
+  margin-top: -138px;
+  margin-bottom: 72px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 42px;
+  font-family: "Muli", sans-serif;
+}
+
+#senti_caption {
+  margin-top: -96px;
+  margin-bottom: 72px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: "Muli", sans-serif;
 }
