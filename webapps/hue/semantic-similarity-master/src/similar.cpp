@@ -4,8 +4,7 @@
 #include <vector>
 #include <sstream>
 
-#define THRESHOLD 0.5
-#define MAX_BUFFER (1 << 18)
+#define THRESHOLD 0.35
 
 #include "rapidjson/document.h"
 #include "rapidjson/prettywriter.h"
@@ -77,7 +76,7 @@ int main(int argc, char **argv) {
   we we("hue/semantic-similarity-master/src/WordNet-3.0/dict", "hue/semantic-similarity-master/dicts/freq.txt");
   we::UndirectedGraph g;
   SentenceSimilarityLi2006 ss(we);  
-  
+
   for (int i = 0; i < sentiment.size(); i++) {
     struct comment c;
     c.text = comments["comments"][i]["text"].GetString();
@@ -85,25 +84,32 @@ int main(int argc, char **argv) {
     if (sentiment[i] == "positive") Lp.push_back(c);
     else if (sentiment[i] == "negative") Ln.push_back(c);
   }
-  
+
+  std::sort(Lp.begin(), Lp.end(), [](const struct comment &a, const struct comment &b) -> bool {
+      return a.score > b.score;
+    });
+  std::sort(Ln.begin(), Ln.end(), [](const struct comment &a, const struct comment &b) -> bool {
+      return a.score > b.score;
+    });
+
   for (int i = 0; i < Lp.size() - 1; i++) {
-    int i_score = Lp[i].score;
     for (int j = i + 1; j < Lp.size(); j++) {
+      if (Lp[j].score < 0) continue;
       float s = ss.compute_similarity(Lp[i].text, Lp[j].text, g);
       if (s >= THRESHOLD) {
-	Lp[j].score += i_score;
-	Lp[i].score = -1;
+	Lp[i].score += Lp[j].score;
+	Lp[j].score = -1;
       }   
     }
   }
   
   for (int i = 0; i < Ln.size() - 1; i++) {
-    int i_score = Ln[i].score;
     for (int j = i + 1; j < Ln.size(); j++) {
+      if (Lp[j].score < 0) continue;
       float s = ss.compute_similarity(Ln[i].text, Ln[j].text, g);
       if (s >= THRESHOLD) {
-	Ln[j].score += i_score;
-	Ln[i].score = -1;
+	Ln[i].score += Ln[j].score;
+	Ln[j].score = -1;
       }   
     }
   }
@@ -157,6 +163,6 @@ int main(int argc, char **argv) {
   ofstream out(OUTPUT_FILE);
   
   out << s.GetString() << endl;
-  
+
   return 0;  
 }
