@@ -26,51 +26,71 @@ cmd_subfolder_t  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(i
 if cmd_subfolder_t not in sys.path:
      sys.path.insert(0, cmd_subfolder_t)
 
-cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Reddit")))
-if cmd_subfolder not in sys.path:
-     sys.path.insert(0, cmd_subfolder)
+cmd_subfolder_r  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Reddit")))
+if cmd_subfolder_r not in sys.path:
+     sys.path.insert(0, cmd_subfolder_r)
 
 import twitter
 import sentiment
 from RedditParser import RedditParser
 
 
+def twitter_posts(query):
+  twitter.twitter_query(query)
+
+  path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
+  ifile  = cmd_subfolder_t + '/data.json'
+  ofile  = path + '/sentiment.csv'
+
+  print ifile
+  print ofile
+
+  sentiment.analyze_sentiment(ifile, ofile, 0.1)
+
+  path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
+  cofile = path + '/senti.json'
+  os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
+  with open(cofile) as data_file:
+      data = json.load(data_file)
+  return json.dumps(data)
+
+def reddit_posts(query):
+  r = RedditParser()
+  r.reddit_query(query, 25, 25)
+  path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
+  ifile  = cmd_subfolder_r + '/data.json'
+  ofile  = path + '/sentiment.csv'
+
+  sentiment.analyze_sentiment(ifile, ofile, 0.1)
+  path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
+  cofile = path + '/reddit_senti.json'
+  os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
+  with open(cofile) as data_file:
+      data = json.load(data_file)
+  return json.dumps(data)
+
+
 @transaction.atomic
 def home(request):
-	context = {}
-	context['query'] = False
-	context['search_query'] = ''
+  context = {}
+  context['query'] = False
+  context['search_query'] = ''
 
-	if request.method == 'GET':
-		return render(request, 'hue/home.html', context)
+  if request.method == 'GET':
+    return render(request, 'hue/home.html', context)
 
-	if 'search_q' in request.POST:
-		search_query = request.POST['search_q']
-		context['search_query'] = search_query
-        print(search_query)
-        context['query'] = True
+  if 'search_q' in request.POST:
+    search_query = request.POST['search_q']
+    context['search_query'] = search_query
+    context['query'] = True
 
-        twitter.twitter_query(search_query)
-        #r = RedditParser()
-        #r.reddit_query(search_query, 25, 25)
+    jtdumps = twitter_posts(search_query);
+    jrdumps = reddit_posts(search_query);
 
-        path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
-        ifile  = cmd_subfolder_t + '/data.json'
-        ofile  = path + '/sentiment.csv'
+    context['data_tw'] = jtdumps
+    context['data_re'] = jrdumps
 
-        print ifile
-        print ofile
-
-        sentiment.analyze_sentiment(ifile, ofile, 0.1)
-
-        path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
-        cofile = path + '/senti.json'
-        os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
-        with open(cofile) as data_file:
-            data = json.load(data_file)
-        context['data'] = json.dumps(data)
-
-	return render(request, 'hue/home.html', context)
+  return render(request, 'hue/home.html', context)
 
 @transaction.atomic
 def about(request):
