@@ -132,8 +132,7 @@ IndexPtr parse_index(long offset, int dbase, char *line) {
     idx->sense_cnt=0;
     idx->offset=0;
     idx->ptruse_cnt=0;
-    idx->ptruse=0;
-    
+    idx->ptruse=u
     /* get the word */
     ptrtok=strtok(line," \n");
     
@@ -292,20 +291,20 @@ SynsetPtr parse_synset(FILE *fp, int dbase, char *word)
     synptr->hereiam = 0;
     synptr->sstype = DONT_KNOW;
     synptr->fnum = 0;
-    synptr->pos = 0;
+    synptr->pos = '\0';
     synptr->wcount = 0;
-    synptr->words = 0;
+    synptr->words = '\0';
     synptr->whichword = 0;
     synptr->ptrcount = 0;
-    synptr->ptrtyp = 0;
-    synptr->ptroff = 0;
-    synptr->ppos = 0;
-    synptr->pto = 0;
-    synptr->pfrm = 0;
+    synptr->ptrtyp = '\0';
+    synptr->ptroff = '\0';
+    synptr->ppos = '\0';
+    synptr->pto = '\0';
+    synptr->pfrm = '\0';
     synptr->fcount = 0;
-    synptr->frmid = 0;
-    synptr->frmto = 0;
-    synptr->defn = 0;
+    synptr->frmid = '\0';
+    synptr->frmto = '\0';
+    synptr->defn = '\0';
     synptr->key = 0;
     synptr->nextss = NULL;
     synptr->nextform = NULL;
