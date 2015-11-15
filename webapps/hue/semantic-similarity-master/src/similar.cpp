@@ -19,6 +19,7 @@ using namespace std;
 #include "wordnet_extended.h"
 
 typedef WordnetExtended we;
+#define NUM_COMMENTS 25
 
 struct comment {
   string text;
@@ -85,6 +86,51 @@ int main(int argc, char **argv) {
     else if (sentiment[i] == "negative") Ln.push_back(c);
   }
   
+  int total_pos = 0;
+  for (int i=0; i<Lp.size();i++){
+   total_pos += Lp[i].score;
+  }
+
+  int total_neg = 0;
+  for (int i=0; i<Ln.size();i++){
+   total_neg += Ln[i].score;
+  }
+   
+  int i,count = 0;
+  long size_Lp = Lp.size();
+  srand (time(NULL));
+  while ((count < NUM_COMMENTS) && (i  < size_Lp)){
+   int rand_int = (rand() % total_pos);
+     std::cout << count << std::endl; 
+     std::cout << i << std::endl; 
+
+   if ((rand_int > Lp[i].score) && ((NUM_COMMENTS - count) < (size_Lp - i))){
+      Lp.push_back(Lp[i]);
+   } else {
+      count++;
+   }
+   i++;
+  } 
+  std::cout << "finished processing positives" << std::endl;
+
+
+  i,count = 0;
+  long size_Ln = Ln.size();
+  srand (time(NULL));
+  while ((count < NUM_COMMENTS) && (i  < size_Ln)){
+   int rand_int = (rand() % total_neg);
+     std::cout << count << std::endl; 
+     std::cout << i << std::endl; 
+
+   if ((rand_int > Ln[i].score) && ((NUM_COMMENTS - count) < (size_Ln - i))){
+      Ln.push_back(Ln[i]);
+   } else {
+      count++;
+   }
+   i++;
+  } 
+  std::cout << "finished processing negatives"<< std::endl;
+
   std::sort(Lp.begin(), Lp.end(), [](const struct comment &a, const struct comment &b) -> bool {
       return a.score > b.score;
     });
