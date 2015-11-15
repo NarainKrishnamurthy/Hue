@@ -33,7 +33,7 @@ def twitter_query(q):
     except TwitterSearchException as e:
         print(e)
 
-    print count
+
     with open(path+'/data.json', 'w') as outfile:
         json.dump(tweets, outfile)
 

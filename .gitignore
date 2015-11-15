@@ -33,3 +33,4 @@ nosetests.xml
 .pydevproject
 
 *.db.sqlite3
+*.json

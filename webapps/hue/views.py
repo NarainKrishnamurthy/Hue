@@ -25,31 +25,34 @@ if cmd_subfolder not in sys.path:
 
 import twitter
 
-
+@transaction.atomic
 def home(request):
 	context = {}
+	context['query'] = False
+	context['search_query'] = ''
 
 	if request.method == 'GET':
 		return render(request, 'hue/home.html', context)
 
-	search_query = request.POST['search_q']
+	if 'search_q' in request.POST:
+		search_query = request.POST['search_q']
+		context['search_query'] = search_query
+		context['query'] = True
 
-	twitter.twitter_query(search_query)
-	path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
-	file_p = path + '/TextClassification.jar'
-	ifile  = cmd_subfolder + '/data.json'
-	ofile  = path + '/sentiment.csv'
-	os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
+		twitter.twitter_query(search_query)
+		path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
+		file_p = path + '/TextClassification.jar'
+		ifile  = cmd_subfolder + '/data.json'
+		ofile  = path + '/sentiment.csv'
+		os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
 
-	# c file return json
-	# context['data'] = c file return value
+
+		# c file return json
+		# context['data'] = c file return value
 	return render(request, 'hue/home.html', context)
 
+@transaction.atomic
 def about(request):
   context = {}
   return render(request, 'hue/about.html', context)
 
-def result(request):
-  context = {}
-  context['search_query'] = request.POST['search_q']
-  return render(request, 'hue/result.html', context)

@@ -2,7 +2,9 @@
 {% load staticfiles %}
 
   {% block content %}
+  {% if query == False %}
     {% include "launch_fragment.html" %}
+  {% endif %}
     {% include "search_bar.html" %}
   {% endblock %}
 
