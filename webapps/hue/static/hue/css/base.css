@@ -70,6 +70,10 @@ body {
   font-family: "Muli", sans-serif;
 }
 
+#description {
+  margin-bottom: 20px;
+}
+
 #nav_bar {
   background: #424242;
 }
@@ -87,7 +91,7 @@ body {
 }
 
 #about_name {
-  margin-top: 8%;
+  margin-top: 1%;
 }
 
 #name {
