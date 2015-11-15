@@ -145,7 +145,7 @@ public class TextClassification {
 							String tweet_key = reader.nextName();
 							if (tweet_key.equals("text")){
 								String line = reader.nextString();
-								System.out.println(line);
+								
 								Record r_line = classifier.predict(line);
 								if (!first){
 									out.print(",");
