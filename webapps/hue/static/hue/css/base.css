@@ -85,3 +85,20 @@ body {
 #search_container {
   padding-top: 16px;
 }
+
+#stats_container {
+  margin-top: 36px;
+  color: white;
+}
+
+#chart2 {
+  margin-top: -36px;
+}
+
+#textbox1 {
+  margin-top: 20px;
+}
+
+#textbox2 {
+  margin-top: -20px;
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+  {% block content %}
+  
+  {% if query == False %}
+    {% include "launch_fragment.html" %}
+  {% endif %}
+  
+    {% include "search_bar.html" %}
+<<<<<<< Updated upstream
+
+  {% if query == True %}
+    {% include "stats.html" %}
+  {% endif %}
+
+=======
+    <script>
+        //var data = {{data | safe}};
+        new Chartist.Bar('.ct-chart', {
+          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          series: [
+            [5, 4, 3, 7, 5, 10, 3],
+            [3, 2, 9, 5, 4, 6, 4]
+          ]
+        }, {
+          seriesBarDistance: 10,
+          reverseData: true,
+          horizontalBars: true,
+          axisY: {
+            offset: 70
+          }
+        });
+    </script>
+    
+>>>>>>> Stashed changes
+  {% endblock %}
+
+{% include "" %}

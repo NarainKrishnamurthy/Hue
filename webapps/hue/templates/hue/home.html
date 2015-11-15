@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block morestyles %}
+  <link href="{% static "hue/css/chartist.min.css" %}" rel="stylesheet">
+{% endblock %}
+
 
   {% block content %}
+  
   {% if query == False %}
     {% include "launch_fragment.html" %}
   {% endif %}
+  
     {% include "search_bar.html" %}
-  <script>
-    var data = "{{data}}";
-  </script>
+
+  {% if query == True %}
+    {% include "stats_fragment.html" %}
+  {% endif %}
+
   {% endblock %}
 
-{% include "" %}
+{% block morescripts %}
+  <script src="{% static "hue/js/chartist.min.js" %}"></script>
+   <script src="{% static "hue/js/statistics.js" %}"></script>
+{% endblock %}
