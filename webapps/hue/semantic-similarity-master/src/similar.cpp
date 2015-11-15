@@ -56,8 +56,6 @@ int main(int argc, char **argv) {
   const char *INPUT_SENTIMENT_FILE = argv[2];
   const char *OUTPUT_FILE = argv[3];
   
-  FILE *file = fopen(INPUT_COMMENTS_FILE, "r");
-
   ifstream in(INPUT_COMMENTS_FILE);
   string json;
   getline(in, json);
@@ -76,7 +74,7 @@ int main(int argc, char **argv) {
 
   vector<struct comment> Lp, Ln;
 
-  we we("/home/sohils/work/WordNet-3.0/dict", "../semantic-similarity-master/dicts/freq.txt");
+  we we("hue/semantic-similarity-master/src/WordNet-3.0/dict", "hue/semantic-similarity-master/dicts/freq.txt");
   we::UndirectedGraph g;
   SentenceSimilarityLi2006 ss(we);  
   
