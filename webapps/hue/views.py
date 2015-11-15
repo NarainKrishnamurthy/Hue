@@ -50,14 +50,14 @@ def home(request):
         file_p = path + '/TextClassification.jar'
         ifile  = cmd_subfolder + '/data.json'
         ofile  = path + '/sentiment.csv'
-        sentiment.analyze_sentiment(ifile, ofile)
+        sentiment.analyze_sentiment(ifile, ofile, 0.20)
 
         path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
         cofile = path + '/senti.json'
         os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
         with open(cofile) as data_file:
             data = json.load(data_file)
-            
+
         context['data'] = data
 
 	return render(request, 'hue/home.html', context)

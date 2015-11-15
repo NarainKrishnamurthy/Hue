@@ -3,7 +3,7 @@ from pprint import pprint
 import json
 import csv
 
-def analyze_sentiment(json_input_path, csv_path):
+def analyze_sentiment(json_input_path, csv_path, threshold):
     with open(json_input_path) as data_file:    
         data = json.load(data_file)
 
@@ -13,9 +13,9 @@ def analyze_sentiment(json_input_path, csv_path):
         sentiment_list = []
         for comment in data["comments"]:
             sentiment = TextBlob(comment["text"]).sentiment.polarity
-            if sentiment >= 0.2:
+            if sentiment >= threshold:
                 sentiment_list.append('positive')
-            elif sentiment <= -0.2:
+            elif sentiment <= (-1*threshold):
                 sentiment_list.append('negative')
             else:
                 sentiment_list.append('neutral')
