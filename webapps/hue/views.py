@@ -22,9 +22,9 @@ cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(ins
 if cmd_subfolder not in sys.path:
      sys.path.insert(0, cmd_subfolder)
 
-cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Twitter")))
-if cmd_subfolder not in sys.path:
-     sys.path.insert(0, cmd_subfolder)
+cmd_subfolder_t  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Twitter")))
+if cmd_subfolder_t not in sys.path:
+     sys.path.insert(0, cmd_subfolder_t)
 
 cmd_subfolder  = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"Reddit")))
 if cmd_subfolder not in sys.path:
@@ -50,12 +50,12 @@ def home(request):
         print(search_query)
         context['query'] = True
 
-        # twitter.twitter_query(search_query)
-        r = RedditParser()
-        r.reddit_query(search_query, 25, 25)
+        twitter.twitter_query(search_query)
+        #r = RedditParser()
+        #r.reddit_query(search_query, 25, 25)
 
         path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
-        ifile  = cmd_subfolder + '/data.json'
+        ifile  = cmd_subfolder_t + '/data.json'
         ofile  = path + '/sentiment.csv'
 
         print ifile
@@ -64,7 +64,7 @@ def home(request):
         sentiment.analyze_sentiment(ifile, ofile, 0.1)
 
         path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
-        cofile = path + '/reddit_senti.json'
+        cofile = path + '/senti.json'
         os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
         with open(cofile) as data_file:
             data = json.load(data_file)
