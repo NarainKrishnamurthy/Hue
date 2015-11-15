@@ -37,20 +37,21 @@ def home(request):
 	if 'search_q' in request.POST:
 		search_query = request.POST['search_q']
 		context['search_query'] = search_query
-		context['query'] = True
+        print(search_query)
+        context['query'] = True
 
-		twitter.twitter_query(search_query)
-		path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
-		file_p = path + '/TextClassification.jar'
-		ifile  = cmd_subfolder + '/data.json'
-		ofile  = path + '/sentiment.csv'
-		os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
-		path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
-		cofile = path + '/senti.json'
-		os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
-		with open(cofile) as data_file:
-			data = json.load(data_file)
-		context['data'] = data
+        twitter.twitter_query(search_query)
+        path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"datumbox")))
+        file_p = path + '/TextClassification.jar'
+        ifile  = cmd_subfolder + '/data.json'
+        ofile  = path + '/sentiment.csv'
+        os.system("java -jar "+ file_p + ' ' + ifile + ' ' + ofile)
+        path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe() ))[0],"semantic-similarity-master")))
+        cofile = path + '/senti.json'
+        os.system(path + "/similar" + ' ' + ifile + ' ' + ofile + ' ' + cofile)
+        with open(cofile) as data_file:
+            data = json.load(data_file)
+        context['data'] = data
 
 	return render(request, 'hue/home.html', context)
 
@@ -58,4 +59,3 @@ def home(request):
 def about(request):
   context = {}
   return render(request, 'hue/about.html', context)
-
