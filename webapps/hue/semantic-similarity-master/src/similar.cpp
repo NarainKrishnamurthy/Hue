@@ -4,7 +4,7 @@
 #include <vector>
 #include <sstream>
 
-#define THRESHOLD 0.35
+#define THRESHOLD 0.6
 
 #include "rapidjson/document.h"
 #include "rapidjson/prettywriter.h"
@@ -36,7 +36,7 @@ vector<string> &split(const string &s, char delim, vector<string> &elems) {
 
 int max(vector<struct comment> list) {
   int max_score = -2;
-  int max;
+  int max = -1;
   for (int i = 0; i < list.size(); i++) {
     if (list[i].score > max_score) {
       max_score = list[i].score;
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     if (sentiment[i] == "positive") Lp.push_back(c);
     else if (sentiment[i] == "negative") Ln.push_back(c);
   }
-
+  
   std::sort(Lp.begin(), Lp.end(), [](const struct comment &a, const struct comment &b) -> bool {
       return a.score > b.score;
     });
@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
   
   for (int i = 0; i < Ln.size() - 1; i++) {
     for (int j = i + 1; j < Ln.size(); j++) {
-      if (Lp[j].score < 0) continue;
+      if (Ln[j].score < 0) continue;
       float s = ss.compute_similarity(Ln[i].text, Ln[j].text, g);
       if (s >= THRESHOLD) {
 	Ln[i].score += Ln[j].score;
@@ -113,18 +113,28 @@ int main(int argc, char **argv) {
       }   
     }
   }
-    
+
   struct comment max_pos[5];
   struct comment max_neg[5];
 
   for (int i = 0; i < 5; i++) {
     int m = max(Lp);
-    max_pos[i] = Lp[m];
-    Lp.erase(Lp.begin() + m);
-    
+    if (m >= 0) {
+      max_pos[i] = Lp[m];
+      Lp.erase(Lp.begin() + m);
+    } else {
+      max_pos[i].score = -2;
+      max_pos[i].text = "";
+    }
+
     m = max(Ln);
-    max_neg[i] = Ln[m];
-    Ln.erase(Ln.begin() + m);
+    if (m >= 0) {
+      max_neg[i] = Ln[m];    
+      Ln.erase(Ln.begin() + m);
+    } else {
+      max_neg[i].score = -2;
+      max_neg[i].text = "";
+    }
   }
 
   
