@@ -9,8 +9,11 @@ Hue mines Twitter and Reddit to determine crowd sentiment, both positive and neg
 # How we built it
 We used the Twitter and Reddit APIs to extract large sets of public messages for specific topics. We utilized NTLK, WordNet, and the semantic methods described in "Sentence Similarity Based on Semantic Nets and Corpus Statistics" Yuhua Li et al, 2006 to determine sentiment and semantic meaning of messages. On the front-end, we utilized Chartist.js and Bootstrap to render our data and views.
 
+### Project Submission Page
+http://devpost.com/software/hue-keifb8
 
-## Backend
+
+### Backend
 - Extract text corpus on topic. Solution: Reddit, FB, and Twitter APIs
 - Classify comments into positive and negative using sentiment analysis. Solution: (http://www.datumbox.com/)
 - Compute the popularity of each comment by weighting likes, upvotes, etc.
