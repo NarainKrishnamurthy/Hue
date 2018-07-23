@@ -1,7 +1,7 @@
 # Hue - Crowd Sentiment Analyzer (Hack Princeton 2015)
 
 # Inspiration
-Being on social media is akin to being constantly surrounded by other's perspectives, beliefs, and standards. We thought of the important of crowd sentiment in recent historical events and wondered why there was no simple platform for quickly gauging both positive and negative sentiment toward particular topics.
+Being on social media is akin to being constantly surrounded by other's perspectives, beliefs, and standards. We thought of the importance of crowd sentiment in recent historical events and wondered why there was no simple platform for quickly gauging both positive and negative sentiment toward particular topics.
 
 # What it does
 Hue mines Twitter and Reddit to determine crowd sentiment, both positive and negative, toward a particular topic. Using sentiment analysis, Hue aggregates similar opinions to determine the 5 most popular positive and negative notions towards the topic
